@@ -1,0 +1,14 @@
+---
+title: "Reproducible Manuscript"
+---
+
+Materials for Session 5 in Week 10 will be found here.
+
+➔	Why write a reproducible manuscript? 
+
+➔	Introduction to Rmarkdown  
+◆	Use RMarkdown to create a template for your manuscript, and set appropriate YAML
+◆	Draft a results section squib, including dynamically generated analyses and plots
+◆	Use Papaja package to generate APA formatting
+
+FOLLOW-UP: complete manuscript squib

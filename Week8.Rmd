@@ -1,0 +1,17 @@
+---
+title: "Open Data"
+---
+
+Materials for Session 3 in Week 8 will be found here.
+
+➔	Why share data? Ethics, legality  & FAIR principles 
+
+➔	Introduction to data simulation and metadata (practical)
+◆	Simulate dataset for focal test of interest, and generate codebook
+◆	Upload simulated dataset to OSF repository with appropriate metadata
+
+
+➔	[OPTIONAL] Introduction to dataset anonymisation tools, and when these might be required (practical)
+◆	(e.g. Amnesia, sdcMicro, synthpop)
+
+FOLLOW-UP: Identify other discipline appropriate data repositories for your project.

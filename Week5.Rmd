@@ -3,3 +3,23 @@ title: "ReproducibleResearch"
 ---
 
 Materials for Session 1 in Week 5 will be found here.
+
+➔	What is a reproducible research project? 
+
+➔	Introduction to OSF (practical)
+◆	Creating an account
+◆	Creating a project / working from templates
+◆	Uploading files
+◆	Working with collaborators
+◆	Version control and registration  
+
+
+
+➔	Introduction to RStudio (practical)
+◆	Installation
+◆	Understand the R Console and the components of the RStudio IDE. 
+◆	Brief introduction to scripting 
+
+FOLLOW-UP: 
+Select either: (1) one of your own (completed or planned) empirical research studies, or (2) an empirical paper that interests you. Read/familiarise yourself sufficiently with the study so that you can preregister a new study/replication in the next session.
+

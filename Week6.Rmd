@@ -1,0 +1,17 @@
+---
+title: "Preregistration"
+---
+Materials for Session 2 in Week 5 will be found here.
+
+➔	What is preregistration? 
+
+➔	Introduction to preregistration (practical)
+◆	Browse completed preregistrations on OSF
+◆	Browse preregistration templates for different types of projects (confirmatory, qualitative, secondary data analysis)
+
+➔	Draft your own preregistration (practical)
+◆	Select and complete a preregistration template for the study you selected (either pseudo-replication, or your own project). 
+Focus on a single hypothesis test.
+◆	Special instructions for power analysis: for now, either complete based on literature based precedents, or using GPower
+
+FOLLOW-UP: Complete preregistration

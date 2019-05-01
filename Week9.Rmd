@@ -1,0 +1,18 @@
+---
+title: "Reproducible Analyses"
+---
+
+Materials for Session 4 in Week 9 will be found here.
+
+➔	What is a reproducible analysis (& power analysis)? 
+
+➔	Draft a reproducible analysis script for your project (practical)
+◆	Script a simple analysis in R & upload analysis script to OSF
+
+➔	Draft a script for power analysis based on a given effect size for your project using simulation methods (practical)  
+◆	Identify “smallest effect size of interest” (SESOI) for your study’s focal test 
+◆	Write a function to iterate data simulation for SESOI and analysis, saving the output each time. 
+◆	Run analysis with different samples sizes
+◆	Print power estimate for different sample sizes. 
+
+FOLLOW-UP: Update preregistration document with new SESOI & power analysis
