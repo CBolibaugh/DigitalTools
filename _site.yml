@@ -5,6 +5,9 @@ output:
   html_document:  
     self_contained: no  
     theme: flatly  
+    include:
+      after_body:footer.html
+      
 navbar:  
   title: "Digital Tools for Reproducible Research"  
 

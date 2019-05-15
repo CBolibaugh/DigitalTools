@@ -1,0 +1,9 @@
+---
+title: "Footer"
+---
+<center>
+
+![](./EROSlogo.svg)
+</center>
+
+
