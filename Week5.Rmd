@@ -1,8 +1,9 @@
 ---
-title: "ReproducibleResearch"
+title: "Reproducible Research"
 ---
 
-Materials for Session 1 in Week 5 will be found here.
+Materials for Session 01 in Week 5 [here](./01DigitalTools.pdf)
+
 
 ➔	What is a reproducible research project? 
 

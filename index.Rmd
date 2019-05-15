@@ -30,6 +30,5 @@ __Sessions:__
 * Week 10 [Writing a reproducible manuscript](./Week10.html) 19 June 2019      
    
 For more info, contact: cylcia.bolibaugh@york.ac.uk
-<center>
-![EROS](./EROSlogo.svg)
-</center>
+
+
