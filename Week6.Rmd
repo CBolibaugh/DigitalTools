@@ -1,7 +1,7 @@
 ---
 title: "Preregistration"
 ---
-Materials for Session 2 in Week 5 will be found here.
+Materials for Session 2 in Week 5 can be found [here](./02DigitalTools.pdf)
 
 ➔	What is preregistration? 
 
