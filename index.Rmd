@@ -5,6 +5,7 @@ title: "Digital Tools for Reproducible Research"
 Here you will find the materials associated with _Digital Tools for Reproducible Research: A reproducible project from start to finish_, in the 
 [Department of Education, University of York](https://www.york.ac.uk/education/).
   
+Materials and a demo OSF site for the project can additionally be found [here](https://osf.io/jrxyw/).
                        
 This series of 5 brownbags provides a practical introduction to digital tools needed to complete a reproducible research project. Each session will move through a successive stage of a project, with a focus on tangible outputs (e.g. OSF project page, preregistration, analysis script and power analysis, reproducible manuscript template). 
 
