@@ -1,5 +1,6 @@
 ---
-title: "Reproducible Manuscript"
+title: "Reproducible Manuscripts"
+author: "Cylcia Bolibaugh"
 ---
 
 Materials for Session 5 in Week 10 will be found here.

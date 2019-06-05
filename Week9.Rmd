@@ -1,5 +1,6 @@
 ---
 title: "Reproducible Analyses"
+author: "Cylcia Bolibaugh"
 ---
 
 Materials for Session 4 in Week 9 will be found here.

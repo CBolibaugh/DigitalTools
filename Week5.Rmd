@@ -1,5 +1,6 @@
 ---
 title: "Reproducible Research"
+author: "Cylcia Bolibaugh"
 ---
 
 Materials for Session 01 in Week 5 [here](./01DigitalTools.pdf)

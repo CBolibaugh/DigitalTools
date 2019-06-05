@@ -1,17 +1,33 @@
 ---
 title: "Open Data"
+author: "Cylcia Bolibaugh"
 ---
-
-Materials for Session 3 in Week 8 will be found here.
+```{r opts, echo = FALSE}
+#suppress the warnings and other messages from showing in the knitted file.
+knitr::opts_chunk$set(
+  fig.width  = 8, 
+  fig.height = 5, 
+  fig.path   = 'images/04/',
+  echo       = TRUE, 
+  warning    = FALSE, 
+  message    = FALSE,
+  cache      = TRUE
+)
+```
+Materials for Session 3 in Week 8 will be found [here](./03DigitalTools.pdf)
 
 ➔	Why share data? Ethics, legality  & FAIR principles 
 
-➔	Introduction to data simulation and metadata (practical)
-◆	Simulate dataset for focal test of interest, and generate codebook
-◆	Upload simulated dataset to OSF repository with appropriate metadata
+➔	Learn about FAIR data principles 
+
+◆ Ensure data is human & machine readable
+◆ Create meta-data
+◆ Identify relevant repositories
+◆ Assign a DOI & license 
+
+➔ Learn about ethical & legal issues
 
 
-➔	[OPTIONAL] Introduction to dataset anonymisation tools, and when these might be required (practical)
-◆	(e.g. Amnesia, sdcMicro, synthpop)
 
-FOLLOW-UP: Identify other discipline appropriate data repositories for your project.
+FOLLOW-UP: Identify other discipline appropriate data repositories for your project.  
+
