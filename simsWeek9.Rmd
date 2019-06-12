@@ -1,7 +1,6 @@
 ---
 title: "Reproducible data analyses"
 author: "Cylcia Bolibaugh"
-date: "12/06/2019"
 output:
   html_document:
     toc: true
@@ -12,12 +11,15 @@ library(tidyverse)
 # devtools::install_github("debruine/faux") 
 library(faux)
 ```
-This material is distributed under a Creative Commons licence. CC-BY-SA 4.0.
-Much of this material has been adapted from other Creative Commons materials:  
+    
+    This material is distributed under a Creative Commons licence. CC-BY-SA 4.0.    
+    Much of this material has been adapted from the following Creative Commons materials:      
 
 * DeBruine, L. (2019). Tutorials. [https://debruine.github.io/tutorials/](https://debruine.github.io/tutorials/index.html)  
 
-Some of this material has been adapted from these other Creative Commons materials:  
+
+    Some of this material has been adapted from these other Creative Commons materials:  
+    
 
 * Crump, Matthew J. C. (2017). Programming for Psychologists: Data Creation and Analysis (Version 1.1). https://crumplab.github.io/programmingforpsych/  
 
@@ -25,7 +27,9 @@ Some of this material has been adapted from these other Creative Commons materia
 * Bishop, D. V. M., Chambers, C., & Munafo, M. R. (2019, January 10). Bishop. Retrieved from osf.io/skz3j  
 
 
-
+  
+---  
+  
 
 
 ## Tasks {.tabset}
@@ -39,6 +43,9 @@ You will learn about functions and iteration by using simulation to calculate a 
 * Put simulated data into a table, and [Export dataset] to CSV  
 
 
+  
+---  
+   
 
 ### Calculating power using simulations
 
@@ -46,6 +53,9 @@ You will learn about functions and iteration by using simulation to calculate a 
 * Extract p-values, and [determine power] for given sample and effect sizes
 * Save your analysis and upload to your demo OSF preregistration
 
+  
+---  
+   
 ### More advanced designs
 
 The topics below are not covered in these materials, but can be followed up in links.

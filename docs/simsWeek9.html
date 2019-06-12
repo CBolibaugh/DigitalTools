@@ -11,7 +11,6 @@
 
 <meta name="author" content="Cylcia Bolibaugh" />
 
-<meta name="date" content="2019-12-06" />
 
 <title>Reproducible data analyses</title>
 
@@ -295,20 +294,19 @@ div.tocify {
 
 <h1 class="title toc-ignore">Reproducible data analyses</h1>
 <h4 class="author"><em>Cylcia Bolibaugh</em></h4>
-<h4 class="date"><em>12/06/2019</em></h4>
 
 </div>
 
 
-<p>This material is distributed under a Creative Commons licence. CC-BY-SA 4.0. Much of this material has been adapted from other Creative Commons materials:</p>
+<pre><code>This material is distributed under a Creative Commons licence. CC-BY-SA 4.0.    
+Much of this material has been adapted from the following Creative Commons materials:      </code></pre>
 <ul>
-<li>DeBruine, L. (2019). Tutorials. <a href="https://debruine.github.io/tutorials/index.html">https://debruine.github.io/tutorials/</a></li>
-</ul>
-<p>Some of this material has been adapted from these other Creative Commons materials:</p>
-<ul>
+<li><p>DeBruine, L. (2019). Tutorials. <a href="https://debruine.github.io/tutorials/index.html">https://debruine.github.io/tutorials/</a></p>
+<p>Some of this material has been adapted from these other Creative Commons materials:</p></li>
 <li><p>Crump, Matthew J. C. (2017). Programming for Psychologists: Data Creation and Analysis (Version 1.1). <a href="https://crumplab.github.io/programmingforpsych/" class="uri">https://crumplab.github.io/programmingforpsych/</a></p></li>
 <li><p>Bishop, D. V. M., Chambers, C., &amp; Munafo, M. R. (2019, January 10). Bishop. Retrieved from osf.io/skz3j</p></li>
 </ul>
+<hr />
 <div id="tasks" class="section level2 tabset">
 <h2>Tasks</h2>
 <p>You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.</p>
@@ -319,6 +317,7 @@ div.tocify {
 <li>Simulate data for a <a href="#paired-samples">Paired samples</a> design</li>
 <li>Put simulated data into a table, and <a href="#export-dataset-1">Export dataset</a> to CSV</li>
 </ul>
+<hr />
 </div>
 <div id="calculating-power-using-simulations" class="section level3">
 <h3>Calculating power using simulations</h3>
@@ -327,6 +326,7 @@ div.tocify {
 <li>Extract p-values, and <a href="#determine-power">determine power</a> for given sample and effect sizes</li>
 <li>Save your analysis and upload to your demo OSF preregistration</li>
 </ul>
+<hr />
 </div>
 <div id="more-advanced-designs" class="section level3">
 <h3>More advanced designs</h3>
@@ -374,13 +374,13 @@ hist(A_scores)</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  A_scores and B_scores
-## t = -1.3229, df = 186.31, p-value = 0.1875
+## t = -0.35441, df = 196.61, p-value = 0.7234
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -9.301431  1.834179
+##  -6.765824  4.704454
 ## sample estimates:
 ## mean of x mean of y 
-##  52.68758  56.42120</code></pre>
+##  54.01153  55.04222</code></pre>
 <p>Look at the output, and re-run the data simulation, and t-test chunks. What happens?</p>
 </div>
 <div id="tibble" class="section level3">
@@ -443,13 +443,13 @@ AB_r &lt;- 0.5</code></pre>
 ##  Paired t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -3.9678, df = 99, p-value = 0.0001374
+## t = -3.6157, df = 99, p-value = 0.0004733
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.4735695 -0.4910902
+##  -1.4555863 -0.4240652
 ## sample estimates:
 ## mean of the differences 
-##              -0.9823299</code></pre>
+##              -0.9398258</code></pre>
 </div>
 <div id="export-dataset-1" class="section level3">
 <h3>Export dataset</h3>
@@ -547,20 +547,20 @@ B_sd &lt;- 2.5
 ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</code></pre>
 <pre><code>## $t
 ##         t 
-## -0.621077 
+## -1.279365 
 ## 
 ## $ci_lower
-## [1] -1.346341
+## [1] -1.599146
 ## 
 ## $ci_upper
-## [1] 0.7045158
+## [1] 0.3455433
 ## 
 ## $p
-## [1] 0.5359962
+## [1] 0.2038119
 ## 
 ## $estimate
 ## mean in group A 
-##      -0.3209124</code></pre>
+##      -0.6268015</code></pre>
 <p>Now you can use this function to run many simulations. There are a lot of ways to do this. The pattern below uses the <code>map_df</code> function from the <code>purrr</code> package, and stores the results in a variable called ‘simulation’. This runs 1000 simulations, which is fine for a demonstration, but you would be better with 100,000.</p>
 <pre class="r"><code>simulation &lt;- purrr::map_df(1:1000, ~ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd))</code></pre>
 </div>
