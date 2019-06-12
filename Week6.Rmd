@@ -1,5 +1,6 @@
 ---
 title: "Preregistration"
+author: "Cylcia Bolibaugh"
 ---
 Materials for Session 02 in Week 6 [here](./02DigitalTools.pdf)
 

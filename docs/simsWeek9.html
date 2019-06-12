@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Cylcia Bolibaugh" />
+
+<meta name="date" content="2019-12-06" />
+
+<title>Reproducible data analyses</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Digital Tools for Reproducible Research</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Reproducible data analyses</h1>
+<h4 class="author"><em>Cylcia Bolibaugh</em></h4>
+<h4 class="date"><em>12/06/2019</em></h4>
+
+</div>
+
+
+<p>This material is distributed under a Creative Commons licence. CC-BY-SA 4.0. Much of this material has been adapted from other Creative Commons materials:</p>
+<ul>
+<li>DeBruine, L. (2019). Tutorials. <a href="https://debruine.github.io/tutorials/index.html">https://debruine.github.io/tutorials/</a></li>
+</ul>
+<p>Some of this material has been adapted from these other Creative Commons materials:</p>
+<ul>
+<li><p>Crump, Matthew J. C. (2017). Programming for Psychologists: Data Creation and Analysis (Version 1.1). <a href="https://crumplab.github.io/programmingforpsych/" class="uri">https://crumplab.github.io/programmingforpsych/</a></p></li>
+<li><p>Bishop, D. V. M., Chambers, C., &amp; Munafo, M. R. (2019, January 10). Bishop. Retrieved from osf.io/skz3j</p></li>
+</ul>
+<div id="tasks" class="section level2 tabset">
+<h2>Tasks</h2>
+<p>You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.</p>
+<div id="data-generation-and-output" class="section level3">
+<h3>Data generation and output</h3>
+<ul>
+<li>Simulate data for an <a href="#independent-samples">Independent samples</a> design</li>
+<li>Simulate data for a <a href="#paired-samples">Paired samples</a> design</li>
+<li>Put simulated data into a table, and <a href="#export-dataset-1">Export dataset</a> to CSV</li>
+</ul>
+</div>
+<div id="calculating-power-using-simulations" class="section level3">
+<h3>Calculating power using simulations</h3>
+<ul>
+<li><a href="#create-custom-functions">Create custom functions</a> to repeatedly simulate data</li>
+<li>Extract p-values, and <a href="#determine-power">determine power</a> for given sample and effect sizes</li>
+<li>Save your analysis and upload to your demo OSF preregistration</li>
+</ul>
+</div>
+<div id="more-advanced-designs" class="section level3">
+<h3>More advanced designs</h3>
+<p>The topics below are not covered in these materials, but can be followed up in links.</p>
+<ul>
+<li><p>simulate more complicated designs <a href="https://github.com/Lakens/ANOVA_power_simulation" class="uri">https://github.com/Lakens/ANOVA_power_simulation</a></p></li>
+<li><p>determine power for linear mixed models with random intercepts, and random slopes <a href="https://psyarxiv.com/xp5cy" class="uri">https://psyarxiv.com/xp5cy</a></p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="independent-samples" class="section level2">
+<h2>Independent samples</h2>
+<p>Start with a simple between subjects design, where the independent (grouping) variable has two levels, and the dependent variable is from a normal distribution. To simulate this dataset, we need to know</p>
+<ul>
+<li>How many subjects are in each condition?</li>
+<li>What are the score means (for each level of the independent variable)?</li>
+<li>What are the score variances?</li>
+</ul>
+<div id="ind-params" class="section level3">
+<h3>Parameters</h3>
+<p>You start simulation scripts by setting parameters for these values.</p>
+<pre class="r"><code>#simulate normally distributed data for an independent samples t-test
+muA &lt;- 50 #what&#39;s the population mean for condition A?
+muB &lt;- 55 #what&#39;s the population mean for condition B?
+
+n1 &lt;- 100 #how many participants group A?
+n2 &lt;- 100 #how many participants group B?
+
+sigma1 &lt;- 20 #population standard deviation of condition A?
+sigma2 &lt;- 20 #population standard deviation of condition B?</code></pre>
+</div>
+<div id="scores" class="section level3">
+<h3>Scores</h3>
+<p>You can the generate the scores using the <code>rnorm()</code> function.</p>
+<pre class="r"><code>A_scores &lt;- rnorm(n1,muA,sigma1) #simulate a vector of 100 deviates from normal distribution
+B_scores &lt;- rnorm(n2,muB,sigma2) #simulate a vector of 100 deviates from normal distribution
+hist(A_scores)</code></pre>
+<p><img src="simsWeek9_files/figure-html/ind-dat-1.png" width="672" /></p>
+<pre class="r"><code>hist(B_scores)</code></pre>
+<p><img src="simsWeek9_files/figure-html/ind-dat-2.png" width="672" /></p>
+<p>You’ve now generated two vectors (container lists) of scores. You can stop here and just analyse your simulated data with <code>t.test(A, B)</code>, which is the equivalent to having the data in wide format in SPSS.</p>
+<pre class="r"><code>t.test(A_scores,B_scores)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  A_scores and B_scores
+## t = -1.3229, df = 186.31, p-value = 0.1875
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -9.301431  1.834179
+## sample estimates:
+## mean of x mean of y 
+##  52.68758  56.42120</code></pre>
+<p>Look at the output, and re-run the data simulation, and t-test chunks. What happens?</p>
+</div>
+<div id="tibble" class="section level3">
+<h3>Tibble</h3>
+<p>It is usually more useful to put your simulated data into a data table that looks like what you might eventually import from a CSV file with your actual experimental data. <em>You can export this simulated dataset as a CSV and upload to your demo OSF project.</em></p>
+<p>If you use the <code>tidyverse</code>, you’ll create a data table using the <code>tibble()</code> function (but you can use <code>data.frame()</code> if you must). We need to know what condition each subject is in, so set the first <code>n1</code> values to “A” and the next <code>n2</code> values to “B”. Then set the score to the <code>A_scores</code> <code>concatenated</code> to the <code>B_scores</code>. THe tibble is assigned to <code>dat</code>.</p>
+<pre class="r"><code>dat &lt;- tibble(
+  sub_condition = rep( c(&quot;A&quot;, &quot;B&quot;), c(n1, n2) ),
+  score = c(A_scores, B_scores)
+)</code></pre>
+</div>
+<div id="export-dataset" class="section level3">
+<h3>Export dataset</h3>
+<p>You can export the tibble to a csv file:</p>
+<pre class="r"><code>write.csv(dat, file =&quot;independent_samples.csv&quot;,row.names = FALSE ) </code></pre>
+</div>
+</div>
+<div id="paired-samples" class="section level2">
+<h2>Paired samples</h2>
+<p>Now let’s try a paired-samples design where the variables are from a normal distribution. Each subject produces two scores (in conditions A and B, which could either be, e.g. a pretest and postest, or scores from two levels of one measure, e.g. grammatical and ungrammatical sentences). What we need to know about these two scores is:</p>
+<ul>
+<li>How many subjects?</li>
+<li>What are the score means?</li>
+<li>What are the score variances?</li>
+<li>What is the correlation between the scores?</li>
+</ul>
+<div id="paired-params" class="section level3">
+<h3>Parameters</h3>
+<pre class="r"><code>sub_n &lt;- 100
+A_mean &lt;- 10
+B_mean &lt;- 11
+A_sd &lt;- 2.5
+B_sd &lt;- 2.5
+AB_r &lt;- 0.5</code></pre>
+</div>
+<div id="correlated-scores" class="section level3">
+<h3>Correlated Scores</h3>
+<p>You can then use <code>rnorm_multi()</code> to generate a data table with simulated values for correlated scores:</p>
+<pre class="r"><code>dat &lt;- faux::rnorm_multi(
+  n = sub_n, 
+  vars = 2, 
+  r = AB_r, 
+  mu = c(A_mean, B_mean), 
+  sd = c(A_sd, B_sd), 
+  varnames = c(&quot;A&quot;, &quot;B&quot;)
+)</code></pre>
+<p>And check your distributions and correlation graphically:</p>
+<pre class="r"><code>hist(dat$A)</code></pre>
+<p><img src="simsWeek9_files/figure-html/plots-1.png" width="672" /></p>
+<pre class="r"><code>hist(dat$B)</code></pre>
+<p><img src="simsWeek9_files/figure-html/plots-2.png" width="672" /></p>
+<pre class="r"><code>plot(dat$A,dat$B)</code></pre>
+<p><img src="simsWeek9_files/figure-html/plots-3.png" width="672" /></p>
+</div>
+<div id="analysis" class="section level3">
+<h3>Analysis</h3>
+<p>Again, you can analyse your simulated data.</p>
+<pre class="r"><code>t.test(dat$A, dat$B, paired = TRUE)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  dat$A and dat$B
+## t = -3.9678, df = 99, p-value = 0.0001374
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.4735695 -0.4910902
+## sample estimates:
+## mean of the differences 
+##              -0.9823299</code></pre>
+</div>
+<div id="export-dataset-1" class="section level3">
+<h3>Export dataset</h3>
+<p>You can export the tibble to a csv file:</p>
+<pre class="r"><code>write.csv(dat, file =&quot;paired_samples.csv&quot;,row.names = FALSE ) </code></pre>
+</div>
+<div id="useful-functions-to-simulate-more-complex-designs" class="section level3">
+<h3>Useful functions to simulate more complex designs</h3>
+<p>In order to simulate more complex designs, you will want to use some of the useful built-in R functions. A good overview can be found <a href="https://aosmith.rbind.io/2018/08/29/getting-started-simulating-data/">here</a>.</p>
+<ul>
+<li>Simulate data from other distributions: <code>rbinom()</code> for binomial data, <code>rpois()</code> for count data, and <code>runif()</code> for uniform data (like the null hypothesis).</li>
+<li>A useful function to create character variables to designate categorical variables is <code>rep()</code>.<br />
+</li>
+<li>A useful function to generate sequences of numbers with particular patterns (e.g. like Subject IDs, or Item IDs), is <code>seq()</code></li>
+</ul>
+<div id="rep" class="section level4">
+<h4><code>rep()</code></h4>
+<p>The function <code>rep()</code> lefts you repeat the first argument a number of times.</p>
+<p>Use <code>rep()</code> to create a vector of alternating <code>&quot;A&quot;</code> and <code>&quot;B&quot;</code> values of length 24.</p>
+<pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), 12)</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot;
+## [18] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<p>Use <code>rep()</code> to create a vector of 12 <code>&quot;A&quot;</code> values followed by 12 <code>&quot;B&quot;</code> values</p>
+<pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), each = 12)</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;
+## [18] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+<p>Use <code>rep()</code> to create a vector of 11 <code>&quot;A&quot;</code> values followed by 3 <code>&quot;B&quot;</code> values</p>
+<pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), c(11, 3))</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+</div>
+<div id="seq" class="section level4">
+<h4><code>seq()</code></h4>
+<p>The function <code>seq()</code> is useful for generating a sequence of numbers with some pattern.</p>
+<p>Use <code>seq()</code> to create a vector of the numbers 0 to 100 by 10s.</p>
+<pre class="r"><code>seq(0, 100, by = 10)</code></pre>
+<pre><code>##  [1]   0  10  20  30  40  50  60  70  80  90 100</code></pre>
+<p>Here is some code to simulate a tibble with 2 x 2 within subjects design. It assumes 20 subjects participating in all conditions. IV1 has two levels. IV2 has two levels.</p>
+<pre class="r"><code>Subject_ID&lt;-factor(rep(seq(1,20),each=4))  
+DV&lt;-rnorm(80,c(100,200,300,400),sd=10)
+IV1&lt;-rep(c(&quot;level1&quot;,&quot;level2&quot;),each=2,20)
+IV2&lt;-rep(c(&quot;level1&quot;,&quot;level2&quot;),each=1,40)
+AllData&lt;-dplyr::tibble(Subject_ID,DV,IV1,IV2)</code></pre>
+</div>
+</div>
+</div>
+<div id="calculating-power" class="section level2">
+<h2>Calculating power</h2>
+<p>Data simulation is useful for calculating power when planning a study. The logic of the approach is as follows:</p>
+<ul>
+<li>generate a large number of datasets that randomly sample from population values that you determine,<br />
+</li>
+<li>carry out your analysis on each dataset,<br />
+</li>
+<li>determine what proportion of those analyses rejected the null hypothesis.</li>
+</ul>
+<p>You can do this by putting the contents of your data simulation code within a function, that you then replicate many times. Put all your parameters as <code>arguments</code> to the function.</p>
+<div id="structuring-a-function" class="section level4">
+<h4>Structuring a function</h4>
+<p>The general structure of a function is as follows:</p>
+<pre class="r"><code>function_name &lt;- function(my_args) {
+  # process the arguments
+  # return some value
+}</code></pre>
+</div>
+<div id="create-custom-functions" class="section level3">
+<h3>Create custom functions</h3>
+<p>Here is a custom function for the independent samples t-test, that outputs selected values. It takes the arguments that we created earlier when simulating independent samples.</p>
+<pre class="r"><code>ind_sim &lt;- function(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd) {
+  A_scores &lt;- rnorm(A_sub_n, A_mean, A_sd)
+  B_scores &lt;- rnorm(B_sub_n, B_mean, B_sd)
+  
+  dat &lt;- tibble(
+    sub_condition = rep( c(&quot;A&quot;, &quot;B&quot;), c(A_sub_n, B_sub_n) ),
+    score = c(A_scores, B_scores)
+  )
+  t &lt;- t.test(score~sub_condition, dat)
+  
+  #return just the values you care about
+  list(
+    t = t$statistic,
+    ci_lower = t$conf.int[1],
+    ci_upper = t$conf.int[2],
+    p = t$p.value,
+    estimate = t$estimate[1] - t$estimate[2]
+  )
+}</code></pre>
+<p>Now run your new function with the values you used above. Note that you can enter these directly into the functions arguments, but here they are coded outside the function so they can be referenced in a histogram.</p>
+<pre class="r"><code>#You could call it like this: ind_sim(50, 50, 10, 11, 2.5, 2.5), but the later makes it easier to change
+A_sub_n &lt;- 50
+B_sub_n &lt;- 50
+A_mean &lt;- 10
+B_mean &lt;- 11
+A_sd &lt;- 2.5
+B_sd &lt;- 2.5
+ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</code></pre>
+<pre><code>## $t
+##         t 
+## -0.621077 
+## 
+## $ci_lower
+## [1] -1.346341
+## 
+## $ci_upper
+## [1] 0.7045158
+## 
+## $p
+## [1] 0.5359962
+## 
+## $estimate
+## mean in group A 
+##      -0.3209124</code></pre>
+<p>Now you can use this function to run many simulations. There are a lot of ways to do this. The pattern below uses the <code>map_df</code> function from the <code>purrr</code> package, and stores the results in a variable called ‘simulation’. This runs 1000 simulations, which is fine for a demonstration, but you would be better with 100,000.</p>
+<pre class="r"><code>simulation &lt;- purrr::map_df(1:1000, ~ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd))</code></pre>
+</div>
+<div id="determine-power" class="section level3">
+<h3>Determine power</h3>
+<p>You then calculate the proportion of tests that reject the null. The p-values from each run can also be represented in a histogram. What happens to p-values when there is no effect (e.g. you set A_mean equal to B_mean)?</p>
+<pre class="r"><code>###### p-values &lt; .05 ? ######
+sig.x1 = ifelse(simulation$p &lt;= .05, 1, 0)
+
+hist(simulation$p, 20, xaxp=c(0, 1, 20), col=2, main = paste(&#39;power:&#39;, mean(sig.x1 * 100), &#39;% with&#39;, A_sub_n, &#39;subjects per group&#39;))</code></pre>
+<p><img src="simsWeek9_files/figure-html/power-hist-1.png" width="672" /></p>
+</div>
+<div id="save-your-simulation" class="section level3">
+<h3>Save your simulation</h3>
+<p>You can save your work as a new R script (ending in .R), or Rmarkdown file (ending in .Rmd). These can then be uploaded to supplement a preregistration. See example (here)[<a href="https://osf.io/kfxtp/" class="uri">https://osf.io/kfxtp/</a>].</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

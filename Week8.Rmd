@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   cache      = TRUE
 )
 ```
-Materials for Session 3 in Week 8 will be found [here](./03DigitalTools.pdf)
+Materials for Session 3 in Week 8 can be found [here](./03DigitalTools.pdf)
 
 ➔	Why share data? Ethics, legality  & FAIR principles 
 

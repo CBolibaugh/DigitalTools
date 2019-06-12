@@ -3,7 +3,7 @@ title: "Reproducible Analyses"
 author: "Cylcia Bolibaugh"
 ---
 
-Materials for Session 4 in Week 9 will be found here.
+Materials for Session 4 in Week 9: slides can be found [here](./04DigitalTools.pdf), and Rmd file can be found [here](./simsWeek9.html).
 
 ➔	What is a reproducible analysis (& power analysis)? 
 
