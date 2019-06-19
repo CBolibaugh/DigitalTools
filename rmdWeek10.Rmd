@@ -1,0 +1,103 @@
+---
+title: "Rmarkdown basics"
+author: "Cylcia Bolibaugh"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r lib, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+# devtools::install_github("debruine/faux") 
+library(faux)
+library(academicWriteR)
+```
+Here is some code and output from last week's simulations. We'll use it this week to see how we can embed figures, set chunk options, and use stats inline.
+
+## Simulate independent samples
+
+We started with a simple between subjects design, where the independent (grouping) variable has two levels, and the dependent variable is from a normal distribution. To simulate this dataset, we need to know
+
+* How many subjects are in each condition?
+* What are the score means (for each level of the independent variable)?
+* What are the score variances?
+
+### Parameters {#ind-params}
+
+We started our simulation script by setting parameters for these values. Here these are the population values from which we'll sample.
+
+_What happens if we change the chunk option to "echo = FALSE"?_
+
+```{r ind-vars, echo = TRUE}
+#simulate normally distributed data for an independent samples t-test
+muA <- 50 #what's the population mean for condition A?
+muB <- 55 #what's the population mean for condition B?
+
+n1 <- 100 #how many participants group A?
+n2 <- 100 #how many participants group B?
+
+sigma1 <- 20 #population standard deviation of condition A?
+sigma2 <- 20 #population standard deviation of condition B?
+```
+
+### Scores
+
+You can generate the scores using the `rnorm()` function (notice the code is  shown here for demo purposes), then plot the distribution of scores for each group.
+
+```{r ind-dat, echo=TRUE}
+A_scores <- rnorm(n1,muA,sigma1) #simulate a vector of 100 deviates from normal distribution
+B_scores <- rnorm(n2,muB,sigma2) #simulate a vector of 100 deviates from normal distribution
+```
+```{r histA, fig.cap = "Figure 1: Distribution of scores from Group A"}
+hist(A_scores)
+```
+
+```{r histB, fig.cap = "Figure 2: Distribution of scores from Group B"}
+hist(B_scores)
+```
+###  Analyses   
+
+You can then run your inferential test on your new data.
+```{r t-test1}
+t.test(A_scores,B_scores)
+```
+If we want to report the results from the statistical test in an inline report (i.e. a sentence), we can assign it to an object and extract the parameters we need in text:
+```{r t-test2}
+mod1 <- broom::tidy(t.test(A_scores,B_scores))
+```
+
+    If we include the following inline text, we can include results directly without copying or pasting:    
+    
+A `` `r
+mod1$method` `` indicated that participants in condition A (*M* = `` `r
+mean(A_scores)` ``, *SD* = `` `r
+sd(A_scores)` ``) did [not] score significantly lower than participants in condition B (*M* = `` `r
+mean(B_scores)` ``, 
+*SD* = `` `r 
+sd(B_scores)` ``), 
+*t*(`` `r
+mod1$parameter` ``) = 
+`` `r
+mod1$statistic` ``, 
+*p* = `` `r
+mod1$p.value` ``.
+
+This will print out as follows:  
+
+> A `r mod1$method` indicated that participants in condition A (*M* = `r mean(A_scores)`, *SD* = `r sd(A_scores)`) did [not] score significantly lower than participants in condition B (*M* =`r mean(B_scores)`, *SD* = `r sd(B_scores)`), *t*(`r mod1$parameter`) = `r mod1$statistic`, *p* = `r mod1$p.value`.
+
+
+
+ Unfortunately, the number of digits isn't helpful. The `round` function can help:
+ 
+> A `r mod1$method` indicated that participants in condition A (*M* = `r round(mean(A_scores),2)`, *SD* = `r round(sd(A_scores),2)`) did [not] score significantly lower than participants in condition B (*M* = `r round(mean(B_scores),2)`, *SD* = `r round(sd(B_scores),2)`), *t*(`r round(mod1$parameter,2)`) = `r round(mod1$statistic,2)`, *p* = `r round(mod1$p.value,2)`.
+ 
+### APA formatting
+Even with the help of the round function, there are still a number of formatting issues which would need to be fixed if we were drafting an APA style report or manuscript. Luckily the `Papaja` [package](https://crsh.github.io/papaja_man/index.html) has automated many of these functions. 
+
+You can try it out by opening a new Rmd document, installing Papaja from the GitHub repository:
+install.packages("devtools")  
+devtools::install_github("crsh/papaja"),  
+and choosing the template.

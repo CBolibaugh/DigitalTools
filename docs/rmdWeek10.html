@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Cylcia Bolibaugh" />
+
+
+<title>Rmarkdown basics</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Digital Tools for Reproducible Research</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Rmarkdown basics</h1>
+<h4 class="author"><em>Cylcia Bolibaugh</em></h4>
+
+</div>
+
+
+<p>Here is some code and output from last week’s simulations. We’ll use it this week to see how we can embed figures, set chunk options, and use stats inline.</p>
+<div id="simulate-independent-samples" class="section level2">
+<h2>Simulate independent samples</h2>
+<p>We started with a simple between subjects design, where the independent (grouping) variable has two levels, and the dependent variable is from a normal distribution. To simulate this dataset, we need to know</p>
+<ul>
+<li>How many subjects are in each condition?</li>
+<li>What are the score means (for each level of the independent variable)?</li>
+<li>What are the score variances?</li>
+</ul>
+<div id="ind-params" class="section level3">
+<h3>Parameters</h3>
+<p>We started our simulation script by setting parameters for these values. Here these are the population values from which we’ll sample.</p>
+<p><em>What happens if we change the chunk option to “echo = FALSE”?</em></p>
+<pre class="r"><code>#simulate normally distributed data for an independent samples t-test
+muA &lt;- 50 #what&#39;s the population mean for condition A?
+muB &lt;- 55 #what&#39;s the population mean for condition B?
+
+n1 &lt;- 100 #how many participants group A?
+n2 &lt;- 100 #how many participants group B?
+
+sigma1 &lt;- 20 #population standard deviation of condition A?
+sigma2 &lt;- 20 #population standard deviation of condition B?</code></pre>
+</div>
+<div id="scores" class="section level3">
+<h3>Scores</h3>
+<p>You can generate the scores using the <code>rnorm()</code> function (notice the code is shown here for demo purposes), then plot the distribution of scores for each group.</p>
+<pre class="r"><code>A_scores &lt;- rnorm(n1,muA,sigma1) #simulate a vector of 100 deviates from normal distribution
+B_scores &lt;- rnorm(n2,muB,sigma2) #simulate a vector of 100 deviates from normal distribution</code></pre>
+<pre class="r"><code>hist(A_scores)</code></pre>
+<div class="figure">
+<img src="rmdWeek10_files/figure-html/histA-1.png" alt="Figure 1: Distribution of scores from Group A" width="672" />
+<p class="caption">
+Figure 1: Distribution of scores from Group A
+</p>
+</div>
+<pre class="r"><code>hist(B_scores)</code></pre>
+<div class="figure">
+<img src="rmdWeek10_files/figure-html/histB-1.png" alt="Figure 2: Distribution of scores from Group B" width="672" />
+<p class="caption">
+Figure 2: Distribution of scores from Group B
+</p>
+</div>
+</div>
+<div id="analyses" class="section level3">
+<h3>Analyses</h3>
+<p>You can then run your inferential test on your new data.</p>
+<pre class="r"><code>t.test(A_scores,B_scores)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  A_scores and B_scores
+## t = -3.7801, df = 196.34, p-value = 0.0002079
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -15.242322  -4.790796
+## sample estimates:
+## mean of x mean of y 
+##  48.45804  58.47460</code></pre>
+<p>If we want to report the results from the statistical test in an inline report (i.e. a sentence), we can assign it to an object and extract the parameters we need in text:</p>
+<pre class="r"><code>mod1 &lt;- broom::tidy(t.test(A_scores,B_scores))</code></pre>
+<pre><code>If we include the following inline text, we can include results directly without copying or pasting:    </code></pre>
+<p>A <code>`r mod1$method`</code> indicated that participants in condition A (<em>M</em> = <code>`r mean(A_scores)`</code>, <em>SD</em> = <code>`r sd(A_scores)`</code>) did [not] score significantly lower than participants in condition B (<em>M</em> = <code>`r mean(B_scores)`</code>, <em>SD</em> = <code>17.8550834</code>), <em>t</em>(<code>`r mod1$parameter`</code>) = <code>`r mod1$statistic`</code>, <em>p</em> = <code>`r mod1$p.value`</code>.</p>
+<p>This will print out as follows:</p>
+<blockquote>
+<p>A Welch Two Sample t-test indicated that participants in condition A (<em>M</em> = 48.4580402, <em>SD</em> = 19.5793438) did [not] score significantly lower than participants in condition B (<em>M</em> =58.4745991, <em>SD</em> = 17.8550834), <em>t</em>(196.3408216) = -3.78009, <em>p</em> = 2.079141310^{-4}.</p>
+</blockquote>
+<p>Unfortunately, the number of digits isn’t helpful. The <code>round</code> function can help:</p>
+<blockquote>
+<p>A Welch Two Sample t-test indicated that participants in condition A (<em>M</em> = 48.46, <em>SD</em> = 19.58) did [not] score significantly lower than participants in condition B (<em>M</em> = 58.47, <em>SD</em> = 17.86), <em>t</em>(196.34) = -3.78, <em>p</em> = 0.</p>
+</blockquote>
+</div>
+<div id="apa-formatting" class="section level3">
+<h3>APA formatting</h3>
+<p>Even with the help of the round function, there are still a number of formatting issues which would need to be fixed if we were drafting an APA style report or manuscript. Luckily the <code>Papaja</code> <a href="https://crsh.github.io/papaja_man/index.html">package</a> has automated many of these functions.</p>
+<p>You can try it out by opening a new Rmd document, installing Papaja from the GitHub repository: install.packages(“devtools”)<br />
+devtools::install_github(“crsh/papaja”),<br />
+and choosing the template.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

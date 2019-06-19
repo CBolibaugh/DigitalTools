@@ -3,7 +3,8 @@ title: "Reproducible Manuscripts"
 author: "Cylcia Bolibaugh"
 ---
 
-Materials for Session 5 in Week 10 will be found here.
+Slides for Session 5 in Week 10 can be found [here](./05DigitalTools.pdf), and Rmd file can be found [here](./rmdWeek10.html).  
+
 
 ➔	Why write a reproducible manuscript? 
 

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Demo Papaja manuscript</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+<style type="text/css">
+  p.abstract{
+    text-align: center;
+    font-weight: bold;
+  }
+  div.abstract{
+    margin: auto;
+    width: 90%;
+  }
+</style>
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Digital Tools for Reproducible Research</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Demo Papaja manuscript</h1>
+<h4 class="author"><em>First Author</em></h4>
+<address class="author_afil">
+1<br><a class="author_email" href="mailto:#"><a href="mailto:my@email.com">my@email.com</a></a>
+</address>
+<h4 class="author"><em>Second author</em></h4>
+<address class="author_afil">
+1,2<br><div class="abstract">
+<p class="abstract">Abstract</p>
+<p>One or two sentences providing a <strong>basic introduction</strong> to the field, comprehensible to a scientist in any discipline.</p>
+<p>Two to three sentences of <strong>more detailed background</strong>, comprehensible to scientists in related disciplines.</p>
+<p>One sentence clearly stating the <strong>general problem</strong> being addressed by this particular study.</p>
+<p>One sentence summarizing the main result (with the words “<strong>here we show</strong>” or their equivalent).</p>
+<p>Two or three sentences explaining what the <strong>main result</strong> reveals in direct comparison to what was thought to be the case previously, or how the main result adds to previous knowledge.</p>
+<p>One or two sentences to put the results into a more <strong>general context</strong>.</p>
+<p>Two or three sentences to provide a <strong>broader perspective</strong>, readily comprehensible to a scientist in any discipline.</p>
+<!-- https://tinyurl.com/ybremelq -->
+</div>
+
+</div>
+
+
+<pre class="r"><code># Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)</code></pre>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<p>We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) --></p>
+<div id="participants" class="section level2">
+<h2>Participants</h2>
+</div>
+<div id="material" class="section level2">
+<h2>Material</h2>
+</div>
+<div id="procedure" class="section level2">
+<h2>Procedure</h2>
+</div>
+<div id="data-analysis" class="section level2">
+<h2>Data analysis</h2>
+<p>We used R <span class="citation">(Version 3.5.1; R Core Team 2018)</span> and the R-packages <em>academicWriteR</em> <span class="citation">(Version 0.1.0; Casillas, n.d.)</span>, <em>dplyr</em> <span class="citation">(Version 0.8.1; Wickham et al. 2019)</span>, <em>faux</em> <span class="citation">(Version 0.0.0.9013; DeBruine 2019)</span>, <em>forcats</em> <span class="citation">(Version 0.3.0; Wickham 2018)</span>, <em>ggplot2</em> <span class="citation">(Version 3.1.1; Wickham 2016)</span>, <em>papaja</em> <span class="citation">(Version 0.1.0.9842; Aust and Barth 2018)</span>, <em>purrr</em> <span class="citation">(Version 0.3.2; Henry and Wickham 2019)</span>, <em>readr</em> <span class="citation">(Version 1.2.1; Wickham, Hester, and Francois 2018)</span>, <em>stringr</em> <span class="citation">(Version 1.4.0; Wickham 2019)</span>, <em>tibble</em> <span class="citation">(Version 2.1.3; Müller and Wickham 2019)</span>, <em>tidyr</em> <span class="citation">(Version 0.8.3; Wickham and Henry 2019)</span>, and <em>tidyverse</em> <span class="citation">(Version 1.2.1; Wickham 2017)</span> for all our analyses.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>Participants from Condition A scored an average of 50.65 points, with a <em>SD</em> of 20.83, while participants from Condition B scored an average of 53.25 points, with a <em>SD</em> of 18.08.</p>
+The distribution of scores can be seen in
+<div class="figure">
+<img src="papajaDemo_files/figure-html/histA-1.png" alt="Figure 1: Distribution of scores from Group A" width="672" />
+<p class="caption">
+Figure 1: Distribution of scores from Group A
+</p>
+</div>
+<div class="figure">
+<img src="papajaDemo_files/figure-html/histB-1.png" alt="Figure 2: Distribution of scores from Group B" width="672" />
+<p class="caption">
+Figure 2: Distribution of scores from Group B
+</p>
+</div>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<pre class="r"><code>r_refs(file = &quot;r-references.bib&quot;)</code></pre>
+<p> </p>
+<div id="refs">
+<div id="ref-R-papaja">
+<p>Aust, Frederik, and Marius Barth. 2018. <em>papaja: Create APA Manuscripts with R Markdown</em>. <a href="https://github.com/crsh/papaja" class="uri">https://github.com/crsh/papaja</a>.</p>
+</div>
+<div id="ref-R-academicWriteR">
+<p>Casillas, Joseph Vincent. n.d. <em>AcademicWriteR: Helper Functions for Academic Writing and Organization</em>. <a href="https://github.com/jvcasillas/academicWriteR" class="uri">https://github.com/jvcasillas/academicWriteR</a>.</p>
+</div>
+<div id="ref-R-faux">
+<p>DeBruine, Lisa. 2019. <em>Faux (Beta) (Version V0.0.0.9011-Beta)</em>. Zenodo. doi:<a href="https://doi.org/10.5281/zenodo.2669587">10.5281/zenodo.2669587</a>.</p>
+</div>
+<div id="ref-R-purrr">
+<p>Henry, Lionel, and Hadley Wickham. 2019. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-R-tibble">
+<p>Müller, Kirill, and Hadley Wickham. 2019. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-forcats">
+<p>———. 2018. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://CRAN.R-project.org/package=forcats" class="uri">https://CRAN.R-project.org/package=forcats</a>.</p>
+</div>
+<div id="ref-R-stringr">
+<p>———. 2019. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-R-readr">
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+</div>
+
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
