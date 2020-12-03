@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -22,6 +22,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -79,9 +90,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -95,7 +104,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -105,6 +113,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -120,7 +131,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -140,6 +150,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -161,19 +208,74 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -204,11 +306,11 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Demo Papaja manuscript</h1>
-<h4 class="author"><em>First Author</em></h4>
+<h4 class="author">First Author</h4>
 <address class="author_afil">
-1<br><a class="author_email" href="mailto:#"><a href="mailto:my@email.com">my@email.com</a></a>
+1<br><a class="author_email" href="mailto:#"><a href="mailto:my@email.com" class="email">my@email.com</a></a>
 </address>
-<h4 class="author"><em>Second author</em></h4>
+<h4 class="author">Second author</h4>
 <address class="author_afil">
 1,2<br><div class="abstract">
 <p class="abstract">Abstract</p>
@@ -242,7 +344,7 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)</code></pre>
 </div>
 <div id="data-analysis" class="section level2">
 <h2>Data analysis</h2>
-<p>We used R <span class="citation">(Version 3.5.1; R Core Team 2018)</span> and the R-packages <em>academicWriteR</em> <span class="citation">(Version 0.1.0; Casillas, n.d.)</span>, <em>dplyr</em> <span class="citation">(Version 0.8.1; Wickham et al. 2019)</span>, <em>faux</em> <span class="citation">(Version 0.0.0.9013; DeBruine 2019)</span>, <em>forcats</em> <span class="citation">(Version 0.3.0; Wickham 2018)</span>, <em>ggplot2</em> <span class="citation">(Version 3.1.1; Wickham 2016)</span>, <em>papaja</em> <span class="citation">(Version 0.1.0.9842; Aust and Barth 2018)</span>, <em>purrr</em> <span class="citation">(Version 0.3.2; Henry and Wickham 2019)</span>, <em>readr</em> <span class="citation">(Version 1.2.1; Wickham, Hester, and Francois 2018)</span>, <em>stringr</em> <span class="citation">(Version 1.4.0; Wickham 2019)</span>, <em>tibble</em> <span class="citation">(Version 2.1.3; Müller and Wickham 2019)</span>, <em>tidyr</em> <span class="citation">(Version 0.8.3; Wickham and Henry 2019)</span>, and <em>tidyverse</em> <span class="citation">(Version 1.2.1; Wickham 2017)</span> for all our analyses.</p>
+<p>We used R <span class="citation">(Version 4.0.2; R Core Team 2018)</span> and the R-packages <em>academicWriteR</em> <span class="citation">(Version 0.4.0; Casillas, n.d.)</span>, <em>dplyr</em> <span class="citation">(Version 1.0.2; Wickham et al. 2019)</span>, <em>faux</em> <span class="citation">(Version 0.0.1.5; DeBruine 2019)</span>, <em>forcats</em> <span class="citation">(Version 0.5.0; Wickham 2018)</span>, <em>ggplot2</em> <span class="citation">(Version 3.3.2; Wickham 2016)</span>, <em>papaja</em> <span class="citation">(Version 0.1.0.9997; Aust and Barth 2018)</span>, <em>purrr</em> <span class="citation">(Version 0.3.4; Henry and Wickham 2019)</span>, <em>readr</em> <span class="citation">(Version 1.4.0; Wickham, Hester, and Francois 2018)</span>, <em>stringr</em> <span class="citation">(Version 1.4.0; Wickham 2019)</span>, <em>tibble</em> <span class="citation">(Version 3.0.4; Müller and Wickham 2019)</span>, <em>tidyr</em> <span class="citation">(Version 1.1.2; Wickham and Henry 2019)</span>, and <em>tidyverse</em> <span class="citation">(Version 1.3.0; Wickham 2017)</span> for all our analyses.</p>
 </div>
 </div>
 <div id="results" class="section level1">
@@ -264,51 +366,51 @@ Figure 2: Distribution of scores from Group B
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
 <pre class="r"><code>r_refs(file = &quot;r-references.bib&quot;)</code></pre>
-<p> </p>
+
 <div id="refs">
 <div id="ref-R-papaja">
-<p>Aust, Frederik, and Marius Barth. 2018. <em>papaja: Create APA Manuscripts with R Markdown</em>. <a href="https://github.com/crsh/papaja" class="uri">https://github.com/crsh/papaja</a>.</p>
+<p>Aust, Frederik, and Marius Barth. 2018. <em>papaja: Create APA Manuscripts with R Markdown</em>. <a href="https://github.com/crsh/papaja">https://github.com/crsh/papaja</a>.</p>
 </div>
 <div id="ref-R-academicWriteR">
-<p>Casillas, Joseph Vincent. n.d. <em>AcademicWriteR: Helper Functions for Academic Writing and Organization</em>. <a href="https://github.com/jvcasillas/academicWriteR" class="uri">https://github.com/jvcasillas/academicWriteR</a>.</p>
+<p>Casillas, Joseph Vincent. n.d. <em>AcademicWriteR: Helper Functions for Academic Writing and Organization</em>. <a href="https://github.com/jvcasillas/academicWriteR">https://github.com/jvcasillas/academicWriteR</a>.</p>
 </div>
 <div id="ref-R-faux">
-<p>DeBruine, Lisa. 2019. <em>Faux (Beta) (Version V0.0.0.9011-Beta)</em>. Zenodo. doi:<a href="https://doi.org/10.5281/zenodo.2669587">10.5281/zenodo.2669587</a>.</p>
+<p>DeBruine, Lisa. 2019. <em>Faux (Beta) (Version V0.0.0.9011-Beta)</em>. Zenodo. <a href="https://doi.org/10.5281/zenodo.2669587">https://doi.org/10.5281/zenodo.2669587</a>.</p>
 </div>
 <div id="ref-R-purrr">
-<p>Henry, Lionel, and Hadley Wickham. 2019. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+<p>Henry, Lionel, and Hadley Wickham. 2019. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.</p>
 </div>
 <div id="ref-R-tibble">
-<p>Müller, Kirill, and Hadley Wickham. 2019. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</p>
+<p>Müller, Kirill, and Hadley Wickham. 2019. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.</p>
 </div>
 <div id="ref-R-base">
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 <div id="ref-R-ggplot2">
-<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</p>
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
 </div>
 <div id="ref-R-tidyverse">
-<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
 </div>
 <div id="ref-R-forcats">
-<p>———. 2018. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://CRAN.R-project.org/package=forcats" class="uri">https://CRAN.R-project.org/package=forcats</a>.</p>
+<p>———. 2018. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://CRAN.R-project.org/package=forcats">https://CRAN.R-project.org/package=forcats</a>.</p>
 </div>
 <div id="ref-R-stringr">
-<p>———. 2019. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
-</div>
-<div id="ref-R-tidyr">
-<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+<p>———. 2019. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p>
 </div>
 <div id="ref-R-dplyr">
-<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2019. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
 </div>
 <div id="ref-R-readr">
-<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
 </div>
 </div>
 
@@ -323,7 +425,7 @@ Figure 2: Distribution of scores from Group B
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -331,6 +433,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

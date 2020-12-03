@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Cylcia Bolibaugh" />
@@ -23,6 +23,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,9 +81,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -86,7 +95,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -96,6 +104,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -111,7 +122,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -131,6 +141,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,19 +199,74 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -195,7 +297,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Rmarkdown basics</h1>
-<h4 class="author"><em>Cylcia Bolibaugh</em></h4>
+<h4 class="author">Cylcia Bolibaugh</h4>
 
 </div>
 
@@ -251,24 +353,24 @@ Figure 2: Distribution of scores from Group B
 ##  Welch Two Sample t-test
 ## 
 ## data:  A_scores and B_scores
-## t = -3.7801, df = 196.34, p-value = 0.0002079
+## t = -2.1849, df = 193.76, p-value = 0.03009
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -15.242322  -4.790796
+##  -11.1612761  -0.5709093
 ## sample estimates:
 ## mean of x mean of y 
-##  48.45804  58.47460</code></pre>
+##  49.79264  55.65873</code></pre>
 <p>If we want to report the results from the statistical test in an inline report (i.e. a sentence), we can assign it to an object and extract the parameters we need in text:</p>
 <pre class="r"><code>mod1 &lt;- broom::tidy(t.test(A_scores,B_scores))</code></pre>
 <pre><code>If we include the following inline text, we can include results directly without copying or pasting:    </code></pre>
-<p>A <code>`r mod1$method`</code> indicated that participants in condition A (<em>M</em> = <code>`r mean(A_scores)`</code>, <em>SD</em> = <code>`r sd(A_scores)`</code>) did [not] score significantly lower than participants in condition B (<em>M</em> = <code>`r mean(B_scores)`</code>, <em>SD</em> = <code>17.8550834</code>), <em>t</em>(<code>`r mod1$parameter`</code>) = <code>`r mod1$statistic`</code>, <em>p</em> = <code>`r mod1$p.value`</code>.</p>
+<p>A <code>`r mod1$method`</code> indicated that participants in condition A (<em>M</em> = <code>`r mean(A_scores)`</code>, <em>SD</em> = <code>`r sd(A_scores)`</code>) did [not] score significantly lower than participants in condition B (<em>M</em> = <code>`r mean(B_scores)`</code>, <em>SD</em> = <code>17.523956</code>), <em>t</em>(<code>`r mod1$parameter`</code>) = <code>`r mod1$statistic`</code>, <em>p</em> = <code>`r mod1$p.value`</code>.</p>
 <p>This will print out as follows:</p>
 <blockquote>
-<p>A Welch Two Sample t-test indicated that participants in condition A (<em>M</em> = 48.4580402, <em>SD</em> = 19.5793438) did [not] score significantly lower than participants in condition B (<em>M</em> =58.4745991, <em>SD</em> = 17.8550834), <em>t</em>(196.3408216) = -3.78009, <em>p</em> = 2.079141310^{-4}.</p>
+<p>A Welch Two Sample t-test indicated that participants in condition A (<em>M</em> = 49.7926366, <em>SD</em> = 20.3402456) did [not] score significantly lower than participants in condition B (<em>M</em> =55.6587293, <em>SD</em> = 17.523956), <em>t</em>(193.7593948) = -2.184928, <em>p</em> = 0.0300939.</p>
 </blockquote>
 <p>Unfortunately, the number of digits isn’t helpful. The <code>round</code> function can help:</p>
 <blockquote>
-<p>A Welch Two Sample t-test indicated that participants in condition A (<em>M</em> = 48.46, <em>SD</em> = 19.58) did [not] score significantly lower than participants in condition B (<em>M</em> = 58.47, <em>SD</em> = 17.86), <em>t</em>(196.34) = -3.78, <em>p</em> = 0.</p>
+<p>A Welch Two Sample t-test indicated that participants in condition A (<em>M</em> = 49.79, <em>SD</em> = 20.34) did [not] score significantly lower than participants in condition B (<em>M</em> = 55.66, <em>SD</em> = 17.52), <em>t</em>(193.76) = -2.18, <em>p</em> = 0.03.</p>
 </blockquote>
 </div>
 <div id="apa-formatting" class="section level3">
@@ -289,7 +391,7 @@ and choosing the template.</p>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -297,6 +399,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

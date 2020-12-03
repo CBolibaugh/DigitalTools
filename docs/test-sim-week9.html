@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Cylcia Bolibaugh" />
@@ -27,6 +27,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -74,9 +85,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -90,7 +99,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -100,6 +108,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -115,7 +126,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -135,6 +145,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -156,47 +203,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -210,6 +276,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -245,8 +317,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -255,6 +325,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -294,8 +374,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reproducible data analyses</h1>
-<h4 class="author"><em>Cylcia Bolibaugh</em></h4>
-<h4 class="date"><em>12/06/2019</em></h4>
+<h4 class="author">Cylcia Bolibaugh</h4>
+<h4 class="date">12/06/2019</h4>
 
 </div>
 
@@ -365,22 +445,22 @@ sigma2 &lt;- 20 #population standard deviation of condition B?</code></pre>
 <pre class="r"><code>A_scores &lt;- rnorm(n1,muA,sigma1) #simulate a vector of 100 deviates from normal distribution
 B_scores &lt;- rnorm(n2,muB,sigma2) #simulate a vector of 100 deviates from normal distribution
 hist(A_scores)</code></pre>
-<p><img src="test_sim_week9_files/figure-html/ind-dat-1.png" width="672" /></p>
+<p><img src="test-sim-week9_files/figure-html/ind-dat-1.png" width="672" /></p>
 <pre class="r"><code>hist(B_scores)</code></pre>
-<p><img src="test_sim_week9_files/figure-html/ind-dat-2.png" width="672" /></p>
+<p><img src="test-sim-week9_files/figure-html/ind-dat-2.png" width="672" /></p>
 <p>You’ve now generated two vectors (container lists) of scores. You can stop here and just analyse your simulated data with <code>t.test(A, B)</code>, which is the equivalent to having the data in wide format in SPSS.</p>
 <pre class="r"><code>t.test(A_scores,B_scores)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  A_scores and B_scores
-## t = -0.62584, df = 197.46, p-value = 0.5321
+## t = -1.9534, df = 197.75, p-value = 0.05218
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -7.240999  3.752224
+##  -11.08301026   0.05264047
 ## sample estimates:
 ## mean of x mean of y 
-##  51.33739  53.08177</code></pre>
+##  49.73900  55.25419</code></pre>
 <p>Look at the output, and re-run the data simulation, and t-test chunks. What happens?</p>
 </div>
 <div id="tibble" class="section level3">
@@ -429,11 +509,11 @@ AB_r &lt;- 0.5</code></pre>
 )</code></pre>
 <p>And check your distributions and correlation graphically:</p>
 <pre class="r"><code>hist(dat$A)</code></pre>
-<p><img src="test_sim_week9_files/figure-html/plots-1.png" width="672" /></p>
+<p><img src="test-sim-week9_files/figure-html/plots-1.png" width="672" /></p>
 <pre class="r"><code>hist(dat$B)</code></pre>
-<p><img src="test_sim_week9_files/figure-html/plots-2.png" width="672" /></p>
+<p><img src="test-sim-week9_files/figure-html/plots-2.png" width="672" /></p>
 <pre class="r"><code>plot(dat$A,dat$B)</code></pre>
-<p><img src="test_sim_week9_files/figure-html/plots-3.png" width="672" /></p>
+<p><img src="test-sim-week9_files/figure-html/plots-3.png" width="672" /></p>
 </div>
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
@@ -443,13 +523,13 @@ AB_r &lt;- 0.5</code></pre>
 ##  Paired t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -3.9128, df = 99, p-value = 0.0001675
+## t = -3.4895, df = 99, p-value = 0.0007239
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.390059 -0.454608
+##  -1.3498219 -0.3712083
 ## sample estimates:
 ## mean of the differences 
-##              -0.9223335</code></pre>
+##              -0.8605151</code></pre>
 </div>
 <div id="export-dataset-1" class="section level3">
 <h3>Export dataset</h3>
@@ -468,15 +548,15 @@ AB_r &lt;- 0.5</code></pre>
 <div id="rep" class="section level4">
 <h4><code>rep()</code></h4>
 <p>The function <code>rep()</code> lefts you repeat the first argument a number of times.</p>
-<p>Use <code>rep()</code> to create a vector of alternating <code>&quot;A&quot;</code> and <code>&quot;B&quot;</code> values of length 24.</p>
+<p>Use <code>rep()</code> to create a vector of alternating <code>"A"</code> and <code>"B"</code> values of length 24.</p>
 <pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), 12)</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot;
 ## [18] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
-<p>Use <code>rep()</code> to create a vector of 12 <code>&quot;A&quot;</code> values followed by 12 <code>&quot;B&quot;</code> values</p>
+<p>Use <code>rep()</code> to create a vector of 12 <code>"A"</code> values followed by 12 <code>"B"</code> values</p>
 <pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), each = 12)</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;
 ## [18] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
-<p>Use <code>rep()</code> to create a vector of 11 <code>&quot;A&quot;</code> values followed by 3 <code>&quot;B&quot;</code> values</p>
+<p>Use <code>rep()</code> to create a vector of 11 <code>"A"</code> values followed by 3 <code>"B"</code> values</p>
 <pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), c(11, 3))</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 </div>
@@ -547,20 +627,20 @@ B_sd &lt;- 2.5
 ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</code></pre>
 <pre><code>## $t
 ##         t 
-## -2.021645 
+## -1.891289 
 ## 
 ## $ci_lower
-## [1] -1.920494
+## [1] -2.010075
 ## 
 ## $ci_upper
-## [1] -0.01754623
+## [1] 0.04850058
 ## 
 ## $p
-## [1] 0.0460025
+## [1] 0.06158036
 ## 
 ## $estimate
 ## mean in group A 
-##        -0.96902</code></pre>
+##      -0.9807873</code></pre>
 <p>Now you can use this function to run many simulations. There are a lot of ways to do this. The pattern below uses the <code>map_df</code> function from the <code>purrr</code> package, and stores the results in a variable called ‘simulation’. This runs 1000 simulations, which is fine for a demonstration, but you would be better with 100,000.</p>
 <pre class="r"><code>simulation &lt;- purrr::map_df(1:1000, ~ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd))</code></pre>
 </div>
@@ -571,7 +651,7 @@ ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</code></pre>
 sig.x1 = ifelse(simulation$p &lt;= .05, 1, 0)
 
 hist(simulation$p, 20, xaxp=c(0, 1, 20), col=2, main = paste(&#39;power:&#39;, mean(sig.x1 * 100), &#39;% with&#39;, A_sub_n, &#39;subjects per group&#39;))</code></pre>
-<p><img src="test_sim_week9_files/figure-html/power-hist-1.png" width="672" /> ### Save your simulation</p>
+<p><img src="test-sim-week9_files/figure-html/power-hist-1.png" width="672" /> ### Save your simulation</p>
 <p>You can save your work as a new R script (ending in .R), or Rmarkdown file. These can then be uploaded to supplement a preregistration. See example (here)[<a href="https://osf.io/kfxtp/" class="uri">https://osf.io/kfxtp/</a>].</p>
 </div>
 </div>
@@ -587,13 +667,56 @@ hist(simulation$p, 20, xaxp=c(0, 1, 20), col=2, main = paste(&#39;power:&#39;, m
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
