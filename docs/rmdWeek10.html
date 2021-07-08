@@ -14,17 +14,27 @@
 
 <title>Rmarkdown basics</title>
 
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -36,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,31 +59,11 @@ if (window.hljs) {
 
 
 <style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
+#rmd-source-code {
+  display: none;
 }
 </style>
+
 
 
 
@@ -88,10 +73,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -108,40 +89,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -169,7 +123,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -181,7 +135,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -192,10 +146,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -207,7 +174,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -257,6 +223,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -292,7 +261,14 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
 
 
 
@@ -382,6 +358,7 @@ and choosing the template.</p>
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUm1hcmtkb3duIGJhc2ljcyIKYXV0aG9yOiAiQ3lsY2lhIEJvbGliYXVnaCIKb3V0cHV0OiAKICAgIGh0bWxfZG9jdW1lbnQ6CiAgICAgICAgY29kZV9kb3dubG9hZDogdHJ1ZQotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IgbGliLCBlY2hvPUZBTFNFLCBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKIyBkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoImRlYnJ1aW5lL2ZhdXgiKSAKIyBsaWJyYXJ5KGZhdXgpCmxpYnJhcnkoYWNhZGVtaWNXcml0ZVIpCmBgYApIZXJlIGlzIHNvbWUgY29kZSBhbmQgb3V0cHV0IGZyb20gbGFzdCB3ZWVrJ3Mgc2ltdWxhdGlvbnMuIFdlJ2xsIHVzZSBpdCB0aGlzIHdlZWsgdG8gc2VlIGhvdyB3ZSBjYW4gZW1iZWQgZmlndXJlcywgc2V0IGNodW5rIG9wdGlvbnMsIGFuZCB1c2Ugc3RhdHMgaW5saW5lLgoKIyMgU2ltdWxhdGUgaW5kZXBlbmRlbnQgc2FtcGxlcwoKV2Ugc3RhcnRlZCB3aXRoIGEgc2ltcGxlIGJldHdlZW4gc3ViamVjdHMgZGVzaWduLCB3aGVyZSB0aGUgaW5kZXBlbmRlbnQgKGdyb3VwaW5nKSB2YXJpYWJsZSBoYXMgdHdvIGxldmVscywgYW5kIHRoZSBkZXBlbmRlbnQgdmFyaWFibGUgaXMgZnJvbSBhIG5vcm1hbCBkaXN0cmlidXRpb24uIFRvIHNpbXVsYXRlIHRoaXMgZGF0YXNldCwgd2UgbmVlZCB0byBrbm93CgoqIEhvdyBtYW55IHN1YmplY3RzIGFyZSBpbiBlYWNoIGNvbmRpdGlvbj8KKiBXaGF0IGFyZSB0aGUgc2NvcmUgbWVhbnMgKGZvciBlYWNoIGxldmVsIG9mIHRoZSBpbmRlcGVuZGVudCB2YXJpYWJsZSk/CiogV2hhdCBhcmUgdGhlIHNjb3JlIHZhcmlhbmNlcz8KCiMjIyBQYXJhbWV0ZXJzIHsjaW5kLXBhcmFtc30KCldlIHN0YXJ0ZWQgb3VyIHNpbXVsYXRpb24gc2NyaXB0IGJ5IHNldHRpbmcgcGFyYW1ldGVycyBmb3IgdGhlc2UgdmFsdWVzLiBIZXJlIHRoZXNlIGFyZSB0aGUgcG9wdWxhdGlvbiB2YWx1ZXMgZnJvbSB3aGljaCB3ZSdsbCBzYW1wbGUuCgpfV2hhdCBoYXBwZW5zIGlmIHdlIGNoYW5nZSB0aGUgY2h1bmsgb3B0aW9uIHRvICJlY2hvID0gRkFMU0UiP18KCmBgYHtyIGluZC12YXJzLCBlY2hvID0gVFJVRX0KI3NpbXVsYXRlIG5vcm1hbGx5IGRpc3RyaWJ1dGVkIGRhdGEgZm9yIGFuIGluZGVwZW5kZW50IHNhbXBsZXMgdC10ZXN0Cm11QSA8LSA1MCAjd2hhdCdzIHRoZSBwb3B1bGF0aW9uIG1lYW4gZm9yIGNvbmRpdGlvbiBBPwptdUIgPC0gNTUgI3doYXQncyB0aGUgcG9wdWxhdGlvbiBtZWFuIGZvciBjb25kaXRpb24gQj8KCm4xIDwtIDEwMCAjaG93IG1hbnkgcGFydGljaXBhbnRzIGdyb3VwIEE/Cm4yIDwtIDEwMCAjaG93IG1hbnkgcGFydGljaXBhbnRzIGdyb3VwIEI/CgpzaWdtYTEgPC0gMjAgI3BvcHVsYXRpb24gc3RhbmRhcmQgZGV2aWF0aW9uIG9mIGNvbmRpdGlvbiBBPwpzaWdtYTIgPC0gMjAgI3BvcHVsYXRpb24gc3RhbmRhcmQgZGV2aWF0aW9uIG9mIGNvbmRpdGlvbiBCPwpgYGAKCiMjIyBTY29yZXMKCllvdSBjYW4gZ2VuZXJhdGUgdGhlIHNjb3JlcyB1c2luZyB0aGUgYHJub3JtKClgIGZ1bmN0aW9uIChub3RpY2UgdGhlIGNvZGUgaXMgIHNob3duIGhlcmUgZm9yIGRlbW8gcHVycG9zZXMpLCB0aGVuIHBsb3QgdGhlIGRpc3RyaWJ1dGlvbiBvZiBzY29yZXMgZm9yIGVhY2ggZ3JvdXAuCgpgYGB7ciBpbmQtZGF0LCBlY2hvPVRSVUV9CkFfc2NvcmVzIDwtIHJub3JtKG4xLG11QSxzaWdtYTEpICNzaW11bGF0ZSBhIHZlY3RvciBvZiAxMDAgZGV2aWF0ZXMgZnJvbSBub3JtYWwgZGlzdHJpYnV0aW9uCkJfc2NvcmVzIDwtIHJub3JtKG4yLG11QixzaWdtYTIpICNzaW11bGF0ZSBhIHZlY3RvciBvZiAxMDAgZGV2aWF0ZXMgZnJvbSBub3JtYWwgZGlzdHJpYnV0aW9uCmBgYApgYGB7ciBoaXN0QSwgZmlnLmNhcCA9ICJGaWd1cmUgMTogRGlzdHJpYnV0aW9uIG9mIHNjb3JlcyBmcm9tIEdyb3VwIEEifQpoaXN0KEFfc2NvcmVzKQpgYGAKCmBgYHtyIGhpc3RCLCBmaWcuY2FwID0gIkZpZ3VyZSAyOiBEaXN0cmlidXRpb24gb2Ygc2NvcmVzIGZyb20gR3JvdXAgQiJ9Cmhpc3QoQl9zY29yZXMpCmBgYAojIyMgIEFuYWx5c2VzICAgCgpZb3UgY2FuIHRoZW4gcnVuIHlvdXIgaW5mZXJlbnRpYWwgdGVzdCBvbiB5b3VyIG5ldyBkYXRhLgpgYGB7ciB0LXRlc3QxfQp0LnRlc3QoQV9zY29yZXMsQl9zY29yZXMpCmBgYApJZiB3ZSB3YW50IHRvIHJlcG9ydCB0aGUgcmVzdWx0cyBmcm9tIHRoZSBzdGF0aXN0aWNhbCB0ZXN0IGluIGFuIGlubGluZSByZXBvcnQgKGkuZS4gYSBzZW50ZW5jZSksIHdlIGNhbiBhc3NpZ24gaXQgdG8gYW4gb2JqZWN0IGFuZCBleHRyYWN0IHRoZSBwYXJhbWV0ZXJzIHdlIG5lZWQgaW4gdGV4dDoKYGBge3IgdC10ZXN0Mn0KbW9kMSA8LSBicm9vbTo6dGlkeSh0LnRlc3QoQV9zY29yZXMsQl9zY29yZXMpKQpgYGAKCiAgICBJZiB3ZSBpbmNsdWRlIHRoZSBmb2xsb3dpbmcgaW5saW5lIHRleHQsIHdlIGNhbiBpbmNsdWRlIHJlc3VsdHMgZGlyZWN0bHkgd2l0aG91dCBjb3B5aW5nIG9yIHBhc3Rpbmc6ICAgIAogICAgCkEgYGAgYHIKbW9kMSRtZXRob2RgIGBgIGluZGljYXRlZCB0aGF0IHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQSAoKk0qID0gYGAgYHIKbWVhbihBX3Njb3JlcylgIGBgLCAqU0QqID0gYGAgYHIKc2QoQV9zY29yZXMpYCBgYCkgZGlkIFtub3RdIHNjb3JlIHNpZ25pZmljYW50bHkgbG93ZXIgdGhhbiBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEIgKCpNKiA9IGBgIGByCm1lYW4oQl9zY29yZXMpYCBgYCwgCipTRCogPSBgYCBgciAKc2QoQl9zY29yZXMpYCBgYCksIAoqdCooYGAgYHIKbW9kMSRwYXJhbWV0ZXJgIGBgKSA9IApgYCBgcgptb2QxJHN0YXRpc3RpY2AgYGAsIAoqcCogPSBgYCBgcgptb2QxJHAudmFsdWVgIGBgLgoKVGhpcyB3aWxsIHByaW50IG91dCBhcyBmb2xsb3dzOiAgCgo+IEEgYHIgbW9kMSRtZXRob2RgIGluZGljYXRlZCB0aGF0IHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQSAoKk0qID0gYHIgbWVhbihBX3Njb3JlcylgLCAqU0QqID0gYHIgc2QoQV9zY29yZXMpYCkgZGlkIFtub3RdIHNjb3JlIHNpZ25pZmljYW50bHkgbG93ZXIgdGhhbiBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEIgKCpNKiA9YHIgbWVhbihCX3Njb3JlcylgLCAqU0QqID0gYHIgc2QoQl9zY29yZXMpYCksICp0KihgciBtb2QxJHBhcmFtZXRlcmApID0gYHIgbW9kMSRzdGF0aXN0aWNgLCAqcCogPSBgciBtb2QxJHAudmFsdWVgLgoKCgogVW5mb3J0dW5hdGVseSwgdGhlIG51bWJlciBvZiBkaWdpdHMgaXNuJ3QgaGVscGZ1bC4gVGhlIGByb3VuZGAgZnVuY3Rpb24gY2FuIGhlbHA6CiAKPiBBIGByIG1vZDEkbWV0aG9kYCBpbmRpY2F0ZWQgdGhhdCBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEEgKCpNKiA9IGByIHJvdW5kKG1lYW4oQV9zY29yZXMpLDIpYCwgKlNEKiA9IGByIHJvdW5kKHNkKEFfc2NvcmVzKSwyKWApIGRpZCBbbm90XSBzY29yZSBzaWduaWZpY2FudGx5IGxvd2VyIHRoYW4gcGFydGljaXBhbnRzIGluIGNvbmRpdGlvbiBCICgqTSogPSBgciByb3VuZChtZWFuKEJfc2NvcmVzKSwyKWAsICpTRCogPSBgciByb3VuZChzZChCX3Njb3JlcyksMilgKSwgKnQqKGByIHJvdW5kKG1vZDEkcGFyYW1ldGVyLDIpYCkgPSBgciByb3VuZChtb2QxJHN0YXRpc3RpYywyKWAsICpwKiA9IGByIHJvdW5kKG1vZDEkcC52YWx1ZSwyKWAuCiAKIyMjIEFQQSBmb3JtYXR0aW5nCkV2ZW4gd2l0aCB0aGUgaGVscCBvZiB0aGUgcm91bmQgZnVuY3Rpb24sIHRoZXJlIGFyZSBzdGlsbCBhIG51bWJlciBvZiBmb3JtYXR0aW5nIGlzc3VlcyB3aGljaCB3b3VsZCBuZWVkIHRvIGJlIGZpeGVkIGlmIHdlIHdlcmUgZHJhZnRpbmcgYW4gQVBBIHN0eWxlIHJlcG9ydCBvciBtYW51c2NyaXB0LiBMdWNraWx5IHRoZSBgUGFwYWphYCBbcGFja2FnZV0oaHR0cHM6Ly9jcnNoLmdpdGh1Yi5pby9wYXBhamFfbWFuL2luZGV4Lmh0bWwpIGhhcyBhdXRvbWF0ZWQgbWFueSBvZiB0aGVzZSBmdW5jdGlvbnMuIAoKWW91IGNhbiB0cnkgaXQgb3V0IGJ5IG9wZW5pbmcgYSBuZXcgUm1kIGRvY3VtZW50LCBpbnN0YWxsaW5nIFBhcGFqYSBmcm9tIHRoZSBHaXRIdWIgcmVwb3NpdG9yeToKaW5zdGFsbC5wYWNrYWdlcygiZGV2dG9vbHMiKSAgCmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiY3JzaC9wYXBhamEiKSwgIAphbmQgY2hvb3NpbmcgdGhlIHRlbXBsYXRlLgo=</div>
 
 
 
@@ -409,12 +386,17 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("rmdWeek10.Rmd");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
