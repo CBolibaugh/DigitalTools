@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r lib, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 # devtools::install_github("debruine/faux") 
-library(faux)
+# library(faux)
 library(academicWriteR)
 ```
 Here is some code and output from last week's simulations. We'll use it this week to see how we can embed figures, set chunk options, and use stats inline.

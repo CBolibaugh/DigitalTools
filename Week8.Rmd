@@ -5,7 +5,7 @@ author: "Cylcia Bolibaugh"
 ```{r opts, echo = FALSE}
 #suppress the warnings and other messages from showing in the knitted file.
 knitr::opts_chunk$set(
-  fig.width  = 8, 
+  fig.width  = 8,  
   fig.height = 5, 
   fig.path   = 'images/04/',
   echo       = TRUE, 

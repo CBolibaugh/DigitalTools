@@ -58,6 +58,8 @@ output            : papaja::apa6_pdf
 ---
 
 ```{r setup, include = FALSE}
+# remotes::install_github("jvcasillas/academicWriteR")
+
 library("papaja")
 library(tidyverse)
 library(academicWriteR)
