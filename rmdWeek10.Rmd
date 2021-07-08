@@ -1,7 +1,9 @@
 ---
 title: "Rmarkdown basics"
 author: "Cylcia Bolibaugh"
-output: html_document
+output: 
+    html_document:
+        code_download: true
 ---
 
 ```{r setup, include=FALSE}
