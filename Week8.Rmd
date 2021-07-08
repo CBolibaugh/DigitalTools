@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 ```
 Materials for Session 3 in Week 8 can be found [here](./03DigitalTools.pdf)
 
+
 ➔	Why share data? Ethics, legality  & FAIR principles 
 
 ➔	Learn about FAIR data principles 
@@ -30,4 +31,6 @@ Materials for Session 3 in Week 8 can be found [here](./03DigitalTools.pdf)
 
 
 FOLLOW-UP: Identify other discipline appropriate data repositories for your project.  
+![](./EROS_padded_logo.png){width="30%"} **For more info, contact: [cylcia.bolibaugh\@york.ac.uk](mailto:cylcia.bolibaugh@york.ac.uk){.email}**
+
 

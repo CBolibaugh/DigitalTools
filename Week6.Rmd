@@ -16,3 +16,5 @@ Focus on a single hypothesis test.
 ◆	Special instructions for power analysis: for now, either complete based on literature based precedents, or using GPower
 
 FOLLOW-UP: Complete preregistration
+
+![](./EROS_padded_logo.png){width="30%"} **For more info, contact: [cylcia.bolibaugh\@york.ac.uk](mailto:cylcia.bolibaugh@york.ac.uk){.email}**

@@ -4,6 +4,7 @@ author: "Cylcia Bolibaugh"
 output: 
     html_document:
         code_download: true
+        css: style.css
 ---
 
 ```{r setup, include=FALSE}

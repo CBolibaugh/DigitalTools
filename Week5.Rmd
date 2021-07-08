@@ -16,7 +16,6 @@ Materials for Session 01 in Week 5 [here](./01DigitalTools.pdf)
 ◆	Version control and registration  
 
 
-
 ➔	Introduction to RStudio (practical)
 ◆	Installation
 ◆	Understand the R Console and the components of the RStudio IDE. 
@@ -25,3 +24,4 @@ Materials for Session 01 in Week 5 [here](./01DigitalTools.pdf)
 FOLLOW-UP: 
 Select either: (1) one of your own (completed or planned) empirical research studies, or (2) an empirical paper that interests you. Read/familiarise yourself sufficiently with the study so that you can preregister a new study/replication in the next session.
 
+![](./EROS_padded_logo.png){width="30%"} **For more info, contact: [cylcia.bolibaugh\@york.ac.uk](mailto:cylcia.bolibaugh@york.ac.uk){.email}**

@@ -14,20 +14,28 @@
 
 <title>Reproducible data analyses</title>
 
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -38,50 +46,109 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
+
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
 
 
-
 <style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
+#rmd-source-code {
+  display: none;
 }
 </style>
+
 
 
 
@@ -91,10 +158,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -111,40 +174,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -172,7 +208,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -184,7 +220,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -195,10 +231,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -210,7 +259,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -260,6 +308,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -336,7 +387,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -368,7 +419,14 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
 
 
 
@@ -381,14 +439,13 @@ div.tocify {
 <pre><code>This material is distributed under a Creative Commons licence. CC-BY-SA 4.0.    
 Much of this material has been adapted from the following Creative Commons materials:      </code></pre>
 <ul>
-<li><p>DeBruine, L. (2019). Tutorials. <a href="https://debruine.github.io/tutorials/index.html">https://debruine.github.io/tutorials/</a></p>
-<p>Some of this material has been adapted from these other Creative Commons materials:</p></li>
+<li><p>DeBruine, L. (2019). Tutorials. <a href="https://debruine.github.io/tutorials/index.html">https://debruine.github.io/tutorials/</a></p></li>
 <li><p>Crump, Matthew J. C. (2017). Programming for Psychologists: Data Creation and Analysis (Version 1.1). <a href="https://crumplab.github.io/programmingforpsych/" class="uri">https://crumplab.github.io/programmingforpsych/</a></p></li>
-<li><p>Bishop, D. V. M., Chambers, C., &amp; Munafo, M. R. (2019, January 10). Bishop. Retrieved from osf.io/skz3j</p></li>
+<li><p>Bishop, D. V. M., Chambers, C., &amp; Munafo, M. R. (2019, January 10). Bishop. Retrieved from <a href="osf.io/skz3j">osf.io/skz3j</a></p></li>
 </ul>
 <hr />
 <div id="tasks" class="section level2 tabset">
-<h2>Tasks</h2>
+<h2 class="tabset">Tasks</h2>
 <p>You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.</p>
 <div id="data-generation-and-output" class="section level3">
 <h3>Data generation and output</h3>
@@ -429,27 +486,27 @@ Much of this material has been adapted from the following Creative Commons mater
 <div id="ind-params" class="section level3">
 <h3>Parameters</h3>
 <p>You start simulation scripts by setting parameters for these values.</p>
-<pre class="r"><code>#simulate normally distributed data for an independent samples t-test
-muA &lt;- 50 #what&#39;s the population mean for condition A?
-muB &lt;- 55 #what&#39;s the population mean for condition B?
-
-n1 &lt;- 100 #how many participants group A?
-n2 &lt;- 100 #how many participants group B?
-
-sigma1 &lt;- 20 #population standard deviation of condition A?
-sigma2 &lt;- 20 #population standard deviation of condition B?</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simulate normally distributed data for an independent samples t-test</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>muA <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co">#what&#39;s the population mean for condition A?</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>muB <span class="ot">&lt;-</span> <span class="dv">55</span> <span class="co">#what&#39;s the population mean for condition B?</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co">#how many participants group A?</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co">#how many participants group B?</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>sigma1 <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co">#population standard deviation of condition A?</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co">#population standard deviation of condition B?</span></span></code></pre></div>
 </div>
 <div id="scores" class="section level3">
 <h3>Scores</h3>
 <p>You can the generate the scores using the <code>rnorm()</code> function.</p>
-<pre class="r"><code>A_scores &lt;- rnorm(n1,muA,sigma1) #simulate a vector of 100 deviates from normal distribution
-B_scores &lt;- rnorm(n2,muB,sigma2) #simulate a vector of 100 deviates from normal distribution
-hist(A_scores)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n1,muA,sigma1) <span class="co">#simulate a vector of 100 deviates from normal distribution</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>B_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n2,muB,sigma2) <span class="co">#simulate a vector of 100 deviates from normal distribution</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(A_scores)</span></code></pre></div>
 <p><img src="simsWeek9_files/figure-html/ind-dat-1.png" width="672" /></p>
-<pre class="r"><code>hist(B_scores)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(B_scores)</span></code></pre></div>
 <p><img src="simsWeek9_files/figure-html/ind-dat-2.png" width="672" /></p>
 <p>You’ve now generated two vectors (container lists) of scores. You can stop here and just analyse your simulated data with <code>t.test(A, B)</code>, which is the equivalent to having the data in wide format in SPSS.</p>
-<pre class="r"><code>t.test(A_scores,B_scores)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A_scores,B_scores)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -467,15 +524,15 @@ hist(A_scores)</code></pre>
 <h3>Tibble</h3>
 <p>It is usually more useful to put your simulated data into a data table that looks like what you might eventually import from a CSV file with your actual experimental data. <em>You can export this simulated dataset as a CSV and upload to your demo OSF project.</em></p>
 <p>If you use the <code>tidyverse</code>, you’ll create a data table using the <code>tibble()</code> function (but you can use <code>data.frame()</code> if you must). We need to know what condition each subject is in, so set the first <code>n1</code> values to “A” and the next <code>n2</code> values to “B”. Then set the score to the <code>A_scores</code> <code>concatenated</code> to the <code>B_scores</code>. THe tibble is assigned to <code>dat</code>.</p>
-<pre class="r"><code>dat &lt;- tibble(
-  sub_condition = rep( c(&quot;A&quot;, &quot;B&quot;), c(n1, n2) ),
-  score = c(A_scores, B_scores)
-)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sub_condition =</span> <span class="fu">rep</span>( <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="fu">c</span>(n1, n2) ),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(A_scores, B_scores)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="export-dataset" class="section level3">
 <h3>Export dataset</h3>
 <p>You can export the tibble to a csv file:</p>
-<pre class="r"><code>write.csv(dat, file =&quot;independent_samples.csv&quot;,row.names = FALSE ) </code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dat, <span class="at">file =</span><span class="st">&quot;independent_samples.csv&quot;</span>,<span class="at">row.names =</span> <span class="cn">FALSE</span> ) </span></code></pre></div>
 </div>
 </div>
 <div id="paired-samples" class="section level2">
@@ -489,36 +546,36 @@ hist(A_scores)</code></pre>
 </ul>
 <div id="paired-params" class="section level3">
 <h3>Parameters</h3>
-<pre class="r"><code>sub_n &lt;- 100
-A_mean &lt;- 10
-B_mean &lt;- 11
-A_sd &lt;- 2.5
-B_sd &lt;- 2.5
-AB_r &lt;- 0.5</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sub_n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="dv">11</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>AB_r <span class="ot">&lt;-</span> <span class="fl">0.5</span></span></code></pre></div>
 </div>
 <div id="correlated-scores" class="section level3">
 <h3>Correlated Scores</h3>
 <p>You can then use <code>rnorm_multi()</code> to generate a data table with simulated values for correlated scores:</p>
-<pre class="r"><code>dat &lt;- faux::rnorm_multi(
-  n = sub_n, 
-  vars = 2, 
-  r = AB_r, 
-  mu = c(A_mean, B_mean), 
-  sd = c(A_sd, B_sd), 
-  varnames = c(&quot;A&quot;, &quot;B&quot;)
-)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> faux<span class="sc">::</span><span class="fu">rnorm_multi</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> sub_n, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">vars =</span> <span class="dv">2</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">r =</span> AB_r, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu =</span> <span class="fu">c</span>(A_mean, B_mean), </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="fu">c</span>(A_sd, B_sd), </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>And check your distributions and correlation graphically:</p>
-<pre class="r"><code>hist(dat$A)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>A)</span></code></pre></div>
 <p><img src="simsWeek9_files/figure-html/plots-1.png" width="672" /></p>
-<pre class="r"><code>hist(dat$B)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dat<span class="sc">$</span>B)</span></code></pre></div>
 <p><img src="simsWeek9_files/figure-html/plots-2.png" width="672" /></p>
-<pre class="r"><code>plot(dat$A,dat$B)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>A,dat<span class="sc">$</span>B)</span></code></pre></div>
 <p><img src="simsWeek9_files/figure-html/plots-3.png" width="672" /></p>
 </div>
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
 <p>Again, you can analyse your simulated data.</p>
-<pre class="r"><code>t.test(dat$A, dat$B, paired = TRUE)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dat<span class="sc">$</span>A, dat<span class="sc">$</span>B, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -534,7 +591,7 @@ AB_r &lt;- 0.5</code></pre>
 <div id="export-dataset-1" class="section level3">
 <h3>Export dataset</h3>
 <p>You can export the tibble to a csv file:</p>
-<pre class="r"><code>write.csv(dat, file =&quot;paired_samples.csv&quot;,row.names = FALSE ) </code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dat, <span class="at">file =</span><span class="st">&quot;paired_samples.csv&quot;</span>,<span class="at">row.names =</span> <span class="cn">FALSE</span> ) </span></code></pre></div>
 </div>
 <div id="useful-functions-to-simulate-more-complex-designs" class="section level3">
 <h3>Useful functions to simulate more complex designs</h3>
@@ -549,29 +606,27 @@ AB_r &lt;- 0.5</code></pre>
 <h4><code>rep()</code></h4>
 <p>The function <code>rep()</code> lefts you repeat the first argument a number of times.</p>
 <p>Use <code>rep()</code> to create a vector of alternating <code>"A"</code> and <code>"B"</code> values of length 24.</p>
-<pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), 12)</code></pre>
-<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot;
-## [18] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
 <p>Use <code>rep()</code> to create a vector of 12 <code>"A"</code> values followed by 12 <code>"B"</code> values</p>
-<pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), each = 12)</code></pre>
-<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;
-## [18] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">each =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 <p>Use <code>rep()</code> to create a vector of 11 <code>"A"</code> values followed by 3 <code>"B"</code> values</p>
-<pre class="r"><code>rep(c(&quot;A&quot;, &quot;B&quot;), c(11, 3))</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 </div>
 <div id="seq" class="section level4">
 <h4><code>seq()</code></h4>
 <p>The function <code>seq()</code> is useful for generating a sequence of numbers with some pattern.</p>
 <p>Use <code>seq()</code> to create a vector of the numbers 0 to 100 by 10s.</p>
-<pre class="r"><code>seq(0, 100, by = 10)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1]   0  10  20  30  40  50  60  70  80  90 100</code></pre>
 <p>Here is some code to simulate a tibble with 2 x 2 within subjects design. It assumes 20 subjects participating in all conditions. IV1 has two levels. IV2 has two levels.</p>
-<pre class="r"><code>Subject_ID&lt;-factor(rep(seq(1,20),each=4))  
-DV&lt;-rnorm(80,c(100,200,300,400),sd=10)
-IV1&lt;-rep(c(&quot;level1&quot;,&quot;level2&quot;),each=2,20)
-IV2&lt;-rep(c(&quot;level1&quot;,&quot;level2&quot;),each=1,40)
-AllData&lt;-dplyr::tibble(Subject_ID,DV,IV1,IV2)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Subject_ID<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">20</span>),<span class="at">each=</span><span class="dv">4</span>))  </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>DV<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">80</span>,<span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>,<span class="dv">400</span>),<span class="at">sd=</span><span class="dv">10</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>IV1<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;level1&quot;</span>,<span class="st">&quot;level2&quot;</span>),<span class="at">each=</span><span class="dv">2</span>,<span class="dv">20</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>IV2<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;level1&quot;</span>,<span class="st">&quot;level2&quot;</span>),<span class="at">each=</span><span class="dv">1</span>,<span class="dv">40</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>AllData<span class="ot">&lt;-</span>dplyr<span class="sc">::</span><span class="fu">tibble</span>(Subject_ID,DV,IV1,IV2)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -589,42 +644,42 @@ AllData&lt;-dplyr::tibble(Subject_ID,DV,IV1,IV2)</code></pre>
 <div id="structuring-a-function" class="section level4">
 <h4>Structuring a function</h4>
 <p>The general structure of a function is as follows:</p>
-<pre class="r"><code>function_name &lt;- function(my_args) {
-  # process the arguments
-  # return some value
-}</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(my_args) {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># process the arguments</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return some value</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="create-custom-functions" class="section level3">
 <h3>Create custom functions</h3>
 <p>Here is a custom function for the independent samples t-test, that outputs selected values. It takes the arguments that we created earlier when simulating independent samples.</p>
-<pre class="r"><code>ind_sim &lt;- function(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd) {
-  A_scores &lt;- rnorm(A_sub_n, A_mean, A_sd)
-  B_scores &lt;- rnorm(B_sub_n, B_mean, B_sd)
-  
-  dat &lt;- tibble(
-    sub_condition = rep( c(&quot;A&quot;, &quot;B&quot;), c(A_sub_n, B_sub_n) ),
-    score = c(A_scores, B_scores)
-  )
-  t &lt;- t.test(score~sub_condition, dat)
-  
-  #return just the values you care about
-  list(
-    t = t$statistic,
-    ci_lower = t$conf.int[1],
-    ci_upper = t$conf.int[2],
-    p = t$p.value,
-    estimate = t$estimate[1] - t$estimate[2]
-  )
-}</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ind_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  A_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(A_sub_n, A_mean, A_sd)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  B_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B_sub_n, B_mean, B_sd)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sub_condition =</span> <span class="fu">rep</span>( <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="fu">c</span>(A_sub_n, B_sub_n) ),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">score =</span> <span class="fu">c</span>(A_scores, B_scores)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(score<span class="sc">~</span>sub_condition, dat)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#return just the values you care about</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">t =</span> t<span class="sc">$</span>statistic,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_lower =</span> t<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_upper =</span> t<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> t<span class="sc">$</span>p.value,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimate =</span> t<span class="sc">$</span>estimate[<span class="dv">1</span>] <span class="sc">-</span> t<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now run your new function with the values you used above. Note that you can enter these directly into the functions arguments, but here they are coded outside the function so they can be referenced in a histogram.</p>
-<pre class="r"><code>#You could call it like this: ind_sim(50, 50, 10, 11, 2.5, 2.5), but the later makes it easier to change
-A_sub_n &lt;- 50
-B_sub_n &lt;- 50
-A_mean &lt;- 10
-B_mean &lt;- 11
-A_sd &lt;- 2.5
-B_sd &lt;- 2.5
-ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You could call it like this: ind_sim(50, 50, 10, 11, 2.5, 2.5), but the later makes it easier to change</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>A_sub_n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>B_sub_n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>A_mean <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>B_mean <span class="ot">&lt;-</span> <span class="dv">11</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>A_sd <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>B_sd <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ind_sim</span>(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</span></code></pre></div>
 <pre><code>## $t
 ##          t 
 ## -0.8502184 
@@ -642,15 +697,15 @@ ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)</code></pre>
 ## mean in group A 
 ##      -0.5062331</code></pre>
 <p>Now you can use this function to run many simulations. There are a lot of ways to do this. The pattern below uses the <code>map_df</code> function from the <code>purrr</code> package, and stores the results in a variable called ‘simulation’. This runs 1000 simulations, which is fine for a demonstration, but you would be better with 100,000.</p>
-<pre class="r"><code>simulation &lt;- purrr::map_df(1:1000, ~ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd))</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_df</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="sc">~</span><span class="fu">ind_sim</span>(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd))</span></code></pre></div>
 </div>
 <div id="determine-power" class="section level3">
 <h3>Determine power</h3>
 <p>You then calculate the proportion of tests that reject the null. The p-values from each run can also be represented in a histogram. What happens to p-values when there is no effect (e.g. you set A_mean equal to B_mean)?</p>
-<pre class="r"><code>###### p-values &lt; .05 ? ######
-sig.x1 = ifelse(simulation$p &lt;= .05, 1, 0)
-
-hist(simulation$p, 20, xaxp=c(0, 1, 20), col=2, main = paste(&#39;power:&#39;, mean(sig.x1 * 100), &#39;% with&#39;, A_sub_n, &#39;subjects per group&#39;))</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">###### p-values &lt; .05 ? ######</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sig.x1 <span class="ot">=</span> <span class="fu">ifelse</span>(simulation<span class="sc">$</span>p <span class="sc">&lt;=</span> .<span class="dv">05</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(simulation<span class="sc">$</span>p, <span class="dv">20</span>, <span class="at">xaxp=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">20</span>), <span class="at">col=</span><span class="dv">2</span>, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&#39;power:&#39;</span>, <span class="fu">mean</span>(sig.x1 <span class="sc">*</span> <span class="dv">100</span>), <span class="st">&#39;% with&#39;</span>, A_sub_n, <span class="st">&#39;subjects per group&#39;</span>))</span></code></pre></div>
 <p><img src="simsWeek9_files/figure-html/power-hist-1.png" width="672" /></p>
 </div>
 <div id="save-your-simulation" class="section level3">
@@ -659,6 +714,7 @@ hist(simulation$p, 20, xaxp=c(0, 1, 20), col=2, main = paste(&#39;power:&#39;, m
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUmVwcm9kdWNpYmxlIGRhdGEgYW5hbHlzZXMiCmF1dGhvcjogIkN5bGNpYSBCb2xpYmF1Z2giCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgdG9jOiB0cnVlCiAgICB0b2NfZmxvYXQ6IHRydWUKICAgIGNvZGVfZG93bmxvYWQ6IHRydWUKLS0tCgpgYGB7ciBsaWIsIGVjaG89RkFMU0UsIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CmxpYnJhcnkodGlkeXZlcnNlKQojIGRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiZGVicnVpbmUvZmF1eCIpIApsaWJyYXJ5KGZhdXgpCmBgYAoKICAgIFRoaXMgbWF0ZXJpYWwgaXMgZGlzdHJpYnV0ZWQgdW5kZXIgYSBDcmVhdGl2ZSBDb21tb25zIGxpY2VuY2UuIENDLUJZLVNBIDQuMC4gICAgCiAgICBNdWNoIG9mIHRoaXMgbWF0ZXJpYWwgaGFzIGJlZW4gYWRhcHRlZCBmcm9tIHRoZSBmb2xsb3dpbmcgQ3JlYXRpdmUgQ29tbW9ucyBtYXRlcmlhbHM6ICAgICAgCgotICAgRGVCcnVpbmUsIEwuICgyMDE5KS4gVHV0b3JpYWxzLiBbaHR0cHM6Ly9kZWJydWluZS5naXRodWIuaW8vdHV0b3JpYWxzL10oaHR0cHM6Ly9kZWJydWluZS5naXRodWIuaW8vdHV0b3JpYWxzL2luZGV4Lmh0bWwpCgotICAgQ3J1bXAsIE1hdHRoZXcgSi4gQy4gKDIwMTcpLiBQcm9ncmFtbWluZyBmb3IgUHN5Y2hvbG9naXN0czogRGF0YSBDcmVhdGlvbiBhbmQgQW5hbHlzaXMgKFZlcnNpb24gMS4xKS4gPGh0dHBzOi8vY3J1bXBsYWIuZ2l0aHViLmlvL3Byb2dyYW1taW5nZm9ycHN5Y2gvPgoKLSAgIEJpc2hvcCwgRC4gVi4gTS4sIENoYW1iZXJzLCBDLiwgJiBNdW5hZm8sIE0uIFIuICgyMDE5LCBKYW51YXJ5IDEwKS4gQmlzaG9wLiBSZXRyaWV2ZWQgZnJvbSBbb3NmLmlvL3NrejNqXShvc2YuaW8vc2t6M2opCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCiMjIFRhc2tzIHsudGFic2V0fQoKWW91IHdpbGwgbGVhcm4gYWJvdXQgZnVuY3Rpb25zIGFuZCBpdGVyYXRpb24gYnkgdXNpbmcgc2ltdWxhdGlvbiB0byBjYWxjdWxhdGUgYSBwb3dlciBhbmFseXNpcyBmb3IgQU5PVkEgb24gYSBzaW1wbGUgdHdvLWdyb3VwIGRlc2lnbi4KCiMjIyBEYXRhIGdlbmVyYXRpb24gYW5kIG91dHB1dAoKLSAgIFNpbXVsYXRlIGRhdGEgZm9yIGFuIFtJbmRlcGVuZGVudCBzYW1wbGVzXSBkZXNpZ24KLSAgIFNpbXVsYXRlIGRhdGEgZm9yIGEgW1BhaXJlZCBzYW1wbGVzXSBkZXNpZ24KLSAgIFB1dCBzaW11bGF0ZWQgZGF0YSBpbnRvIGEgdGFibGUsIGFuZCBbRXhwb3J0IGRhdGFzZXRdKCNleHBvcnQtZGF0YXNldC0xKSB0byBDU1YKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKIyMjIENhbGN1bGF0aW5nIHBvd2VyIHVzaW5nIHNpbXVsYXRpb25zCgotICAgW0NyZWF0ZSBjdXN0b20gZnVuY3Rpb25zXSB0byByZXBlYXRlZGx5IHNpbXVsYXRlIGRhdGEKLSAgIEV4dHJhY3QgcC12YWx1ZXMsIGFuZCBbZGV0ZXJtaW5lIHBvd2VyXSBmb3IgZ2l2ZW4gc2FtcGxlIGFuZCBlZmZlY3Qgc2l6ZXMKLSAgIFNhdmUgeW91ciBhbmFseXNpcyBhbmQgdXBsb2FkIHRvIHlvdXIgZGVtbyBPU0YgcHJlcmVnaXN0cmF0aW9uCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCiMjIyBNb3JlIGFkdmFuY2VkIGRlc2lnbnMKClRoZSB0b3BpY3MgYmVsb3cgYXJlIG5vdCBjb3ZlcmVkIGluIHRoZXNlIG1hdGVyaWFscywgYnV0IGNhbiBiZSBmb2xsb3dlZCB1cCBpbiBsaW5rcy4KCi0gICBzaW11bGF0ZSBtb3JlIGNvbXBsaWNhdGVkIGRlc2lnbnMgPGh0dHBzOi8vZ2l0aHViLmNvbS9MYWtlbnMvQU5PVkFfcG93ZXJfc2ltdWxhdGlvbj4KCi0gICBkZXRlcm1pbmUgcG93ZXIgZm9yIGxpbmVhciBtaXhlZCBtb2RlbHMgd2l0aCByYW5kb20gaW50ZXJjZXB0cywgYW5kIHJhbmRvbSBzbG9wZXMgPGh0dHBzOi8vcHN5YXJ4aXYuY29tL3hwNWN5PgoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgojIyBJbmRlcGVuZGVudCBzYW1wbGVzCgpTdGFydCB3aXRoIGEgc2ltcGxlIGJldHdlZW4gc3ViamVjdHMgZGVzaWduLCB3aGVyZSB0aGUgaW5kZXBlbmRlbnQgKGdyb3VwaW5nKSB2YXJpYWJsZSBoYXMgdHdvIGxldmVscywgYW5kIHRoZSBkZXBlbmRlbnQgdmFyaWFibGUgaXMgZnJvbSBhIG5vcm1hbCBkaXN0cmlidXRpb24uIFRvIHNpbXVsYXRlIHRoaXMgZGF0YXNldCwgd2UgbmVlZCB0byBrbm93CgotICAgSG93IG1hbnkgc3ViamVjdHMgYXJlIGluIGVhY2ggY29uZGl0aW9uPwotICAgV2hhdCBhcmUgdGhlIHNjb3JlIG1lYW5zIChmb3IgZWFjaCBsZXZlbCBvZiB0aGUgaW5kZXBlbmRlbnQgdmFyaWFibGUpPwotICAgV2hhdCBhcmUgdGhlIHNjb3JlIHZhcmlhbmNlcz8KCiMjIyBQYXJhbWV0ZXJzIHsjaW5kLXBhcmFtc30KCllvdSBzdGFydCBzaW11bGF0aW9uIHNjcmlwdHMgYnkgc2V0dGluZyBwYXJhbWV0ZXJzIGZvciB0aGVzZSB2YWx1ZXMuCgpgYGB7ciBpbmQtdmFyc30KI3NpbXVsYXRlIG5vcm1hbGx5IGRpc3RyaWJ1dGVkIGRhdGEgZm9yIGFuIGluZGVwZW5kZW50IHNhbXBsZXMgdC10ZXN0Cm11QSA8LSA1MCAjd2hhdCdzIHRoZSBwb3B1bGF0aW9uIG1lYW4gZm9yIGNvbmRpdGlvbiBBPwptdUIgPC0gNTUgI3doYXQncyB0aGUgcG9wdWxhdGlvbiBtZWFuIGZvciBjb25kaXRpb24gQj8KCm4xIDwtIDEwMCAjaG93IG1hbnkgcGFydGljaXBhbnRzIGdyb3VwIEE/Cm4yIDwtIDEwMCAjaG93IG1hbnkgcGFydGljaXBhbnRzIGdyb3VwIEI/CgpzaWdtYTEgPC0gMjAgI3BvcHVsYXRpb24gc3RhbmRhcmQgZGV2aWF0aW9uIG9mIGNvbmRpdGlvbiBBPwpzaWdtYTIgPC0gMjAgI3BvcHVsYXRpb24gc3RhbmRhcmQgZGV2aWF0aW9uIG9mIGNvbmRpdGlvbiBCPwpgYGAKCiMjIyBTY29yZXMKCllvdSBjYW4gdGhlIGdlbmVyYXRlIHRoZSBzY29yZXMgdXNpbmcgdGhlIGBybm9ybSgpYCBmdW5jdGlvbi4KCmBgYHtyIGluZC1kYXR9CkFfc2NvcmVzIDwtIHJub3JtKG4xLG11QSxzaWdtYTEpICNzaW11bGF0ZSBhIHZlY3RvciBvZiAxMDAgZGV2aWF0ZXMgZnJvbSBub3JtYWwgZGlzdHJpYnV0aW9uCkJfc2NvcmVzIDwtIHJub3JtKG4yLG11QixzaWdtYTIpICNzaW11bGF0ZSBhIHZlY3RvciBvZiAxMDAgZGV2aWF0ZXMgZnJvbSBub3JtYWwgZGlzdHJpYnV0aW9uCmhpc3QoQV9zY29yZXMpCmhpc3QoQl9zY29yZXMpCmBgYAoKWW91J3ZlIG5vdyBnZW5lcmF0ZWQgdHdvIHZlY3RvcnMgKGNvbnRhaW5lciBsaXN0cykgb2Ygc2NvcmVzLiBZb3UgY2FuIHN0b3AgaGVyZSBhbmQganVzdCBhbmFseXNlIHlvdXIgc2ltdWxhdGVkIGRhdGEgd2l0aCBgdC50ZXN0KEEsIEIpYCwgd2hpY2ggaXMgdGhlIGVxdWl2YWxlbnQgdG8gaGF2aW5nIHRoZSBkYXRhIGluIHdpZGUgZm9ybWF0IGluIFNQU1MuCgpgYGB7ciB0LXRlc3QxfQp0LnRlc3QoQV9zY29yZXMsQl9zY29yZXMpCmBgYAoKTG9vayBhdCB0aGUgb3V0cHV0LCBhbmQgcmUtcnVuIHRoZSBkYXRhIHNpbXVsYXRpb24sIGFuZCB0LXRlc3QgY2h1bmtzLiBXaGF0IGhhcHBlbnM/CgojIyMgVGliYmxlCgpJdCBpcyB1c3VhbGx5IG1vcmUgdXNlZnVsIHRvIHB1dCB5b3VyIHNpbXVsYXRlZCBkYXRhIGludG8gYSBkYXRhIHRhYmxlIHRoYXQgbG9va3MgbGlrZSB3aGF0IHlvdSBtaWdodCBldmVudHVhbGx5IGltcG9ydCBmcm9tIGEgQ1NWIGZpbGUgd2l0aCB5b3VyIGFjdHVhbCBleHBlcmltZW50YWwgZGF0YS4gKllvdSBjYW4gZXhwb3J0IHRoaXMgc2ltdWxhdGVkIGRhdGFzZXQgYXMgYSBDU1YgYW5kIHVwbG9hZCB0byB5b3VyIGRlbW8gT1NGIHByb2plY3QuKgoKSWYgeW91IHVzZSB0aGUgYHRpZHl2ZXJzZWAsIHlvdSdsbCBjcmVhdGUgYSBkYXRhIHRhYmxlIHVzaW5nIHRoZSBgdGliYmxlKClgIGZ1bmN0aW9uIChidXQgeW91IGNhbiB1c2UgYGRhdGEuZnJhbWUoKWAgaWYgeW91IG11c3QpLiBXZSBuZWVkIHRvIGtub3cgd2hhdCBjb25kaXRpb24gZWFjaCBzdWJqZWN0IGlzIGluLCBzbyBzZXQgdGhlIGZpcnN0IGBuMWAgdmFsdWVzIHRvICJBIiBhbmQgdGhlIG5leHQgYG4yYCB2YWx1ZXMgdG8gIkIiLiBUaGVuIHNldCB0aGUgc2NvcmUgdG8gdGhlIGBBX3Njb3Jlc2AgYGNvbmNhdGVuYXRlZGAgdG8gdGhlIGBCX3Njb3Jlc2AuIFRIZSB0aWJibGUgaXMgYXNzaWduZWQgdG8gYGRhdGAuCgpgYGB7ciBpbmQtdGliYmxlfQpkYXQgPC0gdGliYmxlKAogIHN1Yl9jb25kaXRpb24gPSByZXAoIGMoIkEiLCAiQiIpLCBjKG4xLCBuMikgKSwKICBzY29yZSA9IGMoQV9zY29yZXMsIEJfc2NvcmVzKQopCmBgYAoKIyMjIEV4cG9ydCBkYXRhc2V0CgpZb3UgY2FuIGV4cG9ydCB0aGUgdGliYmxlIHRvIGEgY3N2IGZpbGU6CgpgYGB7ciBleHBvcnQtY3N2fQp3cml0ZS5jc3YoZGF0LCBmaWxlID0iaW5kZXBlbmRlbnRfc2FtcGxlcy5jc3YiLHJvdy5uYW1lcyA9IEZBTFNFICkgCmBgYAoKIyMgUGFpcmVkIHNhbXBsZXMKCk5vdyBsZXQncyB0cnkgYSBwYWlyZWQtc2FtcGxlcyBkZXNpZ24gd2hlcmUgdGhlIHZhcmlhYmxlcyBhcmUgZnJvbSBhIG5vcm1hbCBkaXN0cmlidXRpb24uIEVhY2ggc3ViamVjdCBwcm9kdWNlcyB0d28gc2NvcmVzIChpbiBjb25kaXRpb25zIEEgYW5kIEIsIHdoaWNoIGNvdWxkIGVpdGhlciBiZSwgZS5nLiBhIHByZXRlc3QgYW5kIHBvc3Rlc3QsIG9yIHNjb3JlcyBmcm9tIHR3byBsZXZlbHMgb2Ygb25lIG1lYXN1cmUsIGUuZy4gZ3JhbW1hdGljYWwgYW5kIHVuZ3JhbW1hdGljYWwgc2VudGVuY2VzKS4gV2hhdCB3ZSBuZWVkIHRvIGtub3cgYWJvdXQgdGhlc2UgdHdvIHNjb3JlcyBpczoKCi0gICBIb3cgbWFueSBzdWJqZWN0cz8KLSAgIFdoYXQgYXJlIHRoZSBzY29yZSBtZWFucz8KLSAgIFdoYXQgYXJlIHRoZSBzY29yZSB2YXJpYW5jZXM/Ci0gICBXaGF0IGlzIHRoZSBjb3JyZWxhdGlvbiBiZXR3ZWVuIHRoZSBzY29yZXM/CgojIyMgUGFyYW1ldGVycyB7I3BhaXJlZC1wYXJhbXN9CgpgYGB7ciBwYWlyZWQtdmFyc30Kc3ViX24gPC0gMTAwCkFfbWVhbiA8LSAxMApCX21lYW4gPC0gMTEKQV9zZCA8LSAyLjUKQl9zZCA8LSAyLjUKQUJfciA8LSAwLjUKYGBgCgojIyMgQ29ycmVsYXRlZCBTY29yZXMKCllvdSBjYW4gdGhlbiB1c2UgYHJub3JtX211bHRpKClgIHRvIGdlbmVyYXRlIGEgZGF0YSB0YWJsZSB3aXRoIHNpbXVsYXRlZCB2YWx1ZXMgZm9yIGNvcnJlbGF0ZWQgc2NvcmVzOgoKYGBge3IgcGFpcmVkLWRhdH0KZGF0IDwtIGZhdXg6OnJub3JtX211bHRpKAogIG4gPSBzdWJfbiwgCiAgdmFycyA9IDIsIAogIHIgPSBBQl9yLCAKICBtdSA9IGMoQV9tZWFuLCBCX21lYW4pLCAKICBzZCA9IGMoQV9zZCwgQl9zZCksIAogIHZhcm5hbWVzID0gYygiQSIsICJCIikKKQpgYGAKCkFuZCBjaGVjayB5b3VyIGRpc3RyaWJ1dGlvbnMgYW5kIGNvcnJlbGF0aW9uIGdyYXBoaWNhbGx5OgoKYGBge3IgcGxvdHN9Cmhpc3QoZGF0JEEpCmhpc3QoZGF0JEIpCnBsb3QoZGF0JEEsZGF0JEIpCmBgYAoKIyMjIEFuYWx5c2lzCgpBZ2FpbiwgeW91IGNhbiBhbmFseXNlIHlvdXIgc2ltdWxhdGVkIGRhdGEuCgpgYGB7ciBwYWlyZWQtdGVzdH0KdC50ZXN0KGRhdCRBLCBkYXQkQiwgcGFpcmVkID0gVFJVRSkKYGBgCgojIyMgRXhwb3J0IGRhdGFzZXQgeyNleHBvcnQtZGF0YXNldC0xfQoKWW91IGNhbiBleHBvcnQgdGhlIHRpYmJsZSB0byBhIGNzdiBmaWxlOgoKYGBge3IgZXhwb3J0LWNzdjJ9CndyaXRlLmNzdihkYXQsIGZpbGUgPSJwYWlyZWRfc2FtcGxlcy5jc3YiLHJvdy5uYW1lcyA9IEZBTFNFICkgCmBgYAoKIyMjIFVzZWZ1bCBmdW5jdGlvbnMgdG8gc2ltdWxhdGUgbW9yZSBjb21wbGV4IGRlc2lnbnMKCkluIG9yZGVyIHRvIHNpbXVsYXRlIG1vcmUgY29tcGxleCBkZXNpZ25zLCB5b3Ugd2lsbCB3YW50IHRvIHVzZSBzb21lIG9mIHRoZSB1c2VmdWwgYnVpbHQtaW4gUiBmdW5jdGlvbnMuIEEgZ29vZCBvdmVydmlldyBjYW4gYmUgZm91bmQgW2hlcmVdKGh0dHBzOi8vYW9zbWl0aC5yYmluZC5pby8yMDE4LzA4LzI5L2dldHRpbmctc3RhcnRlZC1zaW11bGF0aW5nLWRhdGEvKS4KCi0gICBTaW11bGF0ZSBkYXRhIGZyb20gb3RoZXIgZGlzdHJpYnV0aW9uczogYHJiaW5vbSgpYCBmb3IgYmlub21pYWwgZGF0YSwgYHJwb2lzKClgIGZvciBjb3VudCBkYXRhLCBhbmQgYHJ1bmlmKClgIGZvciB1bmlmb3JtIGRhdGEgKGxpa2UgdGhlIG51bGwgaHlwb3RoZXNpcykuCi0gICBBIHVzZWZ1bCBmdW5jdGlvbiB0byBjcmVhdGUgY2hhcmFjdGVyIHZhcmlhYmxlcyB0byBkZXNpZ25hdGUgY2F0ZWdvcmljYWwgdmFyaWFibGVzIGlzIGByZXAoKWAuXAotICAgQSB1c2VmdWwgZnVuY3Rpb24gdG8gZ2VuZXJhdGUgc2VxdWVuY2VzIG9mIG51bWJlcnMgd2l0aCBwYXJ0aWN1bGFyIHBhdHRlcm5zIChlLmcuIGxpa2UgU3ViamVjdCBJRHMsIG9yIEl0ZW0gSURzKSwgaXMgYHNlcSgpYAoKIyMjIyBgcmVwKClgCgpUaGUgZnVuY3Rpb24gYHJlcCgpYCBsZWZ0cyB5b3UgcmVwZWF0IHRoZSBmaXJzdCBhcmd1bWVudCBhIG51bWJlciBvZiB0aW1lcy4KClVzZSBgcmVwKClgIHRvIGNyZWF0ZSBhIHZlY3RvciBvZiBhbHRlcm5hdGluZyBgIkEiYCBhbmQgYCJCImAgdmFsdWVzIG9mIGxlbmd0aCAyNC4KCmBgYHtyIHJlcDF9CnJlcChjKCJBIiwgIkIiKSwgMTIpCmBgYAoKVXNlIGByZXAoKWAgdG8gY3JlYXRlIGEgdmVjdG9yIG9mIDEyIGAiQSJgIHZhbHVlcyBmb2xsb3dlZCBieSAxMiBgIkIiYCB2YWx1ZXMKCmBgYHtyIHJlcDJ9CnJlcChjKCJBIiwgIkIiKSwgZWFjaCA9IDEyKQpgYGAKClVzZSBgcmVwKClgIHRvIGNyZWF0ZSBhIHZlY3RvciBvZiAxMSBgIkEiYCB2YWx1ZXMgZm9sbG93ZWQgYnkgMyBgIkIiYCB2YWx1ZXMKCmBgYHtyIHJlcDN9CnJlcChjKCJBIiwgIkIiKSwgYygxMSwgMykpCmBgYAoKIyMjIyBgc2VxKClgCgpUaGUgZnVuY3Rpb24gYHNlcSgpYCBpcyB1c2VmdWwgZm9yIGdlbmVyYXRpbmcgYSBzZXF1ZW5jZSBvZiBudW1iZXJzIHdpdGggc29tZSBwYXR0ZXJuLgoKVXNlIGBzZXEoKWAgdG8gY3JlYXRlIGEgdmVjdG9yIG9mIHRoZSBudW1iZXJzIDAgdG8gMTAwIGJ5IDEwcy4KCmBgYHtyIHNlcTF9CnNlcSgwLCAxMDAsIGJ5ID0gMTApCmBgYAoKSGVyZSBpcyBzb21lIGNvZGUgdG8gc2ltdWxhdGUgYSB0aWJibGUgd2l0aCAyIHggMiB3aXRoaW4gc3ViamVjdHMgZGVzaWduLiBJdCBhc3N1bWVzIDIwIHN1YmplY3RzIHBhcnRpY2lwYXRpbmcgaW4gYWxsIGNvbmRpdGlvbnMuIElWMSBoYXMgdHdvIGxldmVscy4gSVYyIGhhcyB0d28gbGV2ZWxzLgoKYGBge3IgQU9WLXdpdGhpbn0KU3ViamVjdF9JRDwtZmFjdG9yKHJlcChzZXEoMSwyMCksZWFjaD00KSkgIApEVjwtcm5vcm0oODAsYygxMDAsMjAwLDMwMCw0MDApLHNkPTEwKQpJVjE8LXJlcChjKCJsZXZlbDEiLCJsZXZlbDIiKSxlYWNoPTIsMjApCklWMjwtcmVwKGMoImxldmVsMSIsImxldmVsMiIpLGVhY2g9MSw0MCkKQWxsRGF0YTwtZHBseXI6OnRpYmJsZShTdWJqZWN0X0lELERWLElWMSxJVjIpCmBgYAoKIyMgQ2FsY3VsYXRpbmcgcG93ZXIKCkRhdGEgc2ltdWxhdGlvbiBpcyB1c2VmdWwgZm9yIGNhbGN1bGF0aW5nIHBvd2VyIHdoZW4gcGxhbm5pbmcgYSBzdHVkeS4gVGhlIGxvZ2ljIG9mIHRoZSBhcHByb2FjaCBpcyBhcyBmb2xsb3dzOgoKLSAgIGdlbmVyYXRlIGEgbGFyZ2UgbnVtYmVyIG9mIGRhdGFzZXRzIHRoYXQgcmFuZG9tbHkgc2FtcGxlIGZyb20gcG9wdWxhdGlvbiB2YWx1ZXMgdGhhdCB5b3UgZGV0ZXJtaW5lLFwKLSAgIGNhcnJ5IG91dCB5b3VyIGFuYWx5c2lzIG9uIGVhY2ggZGF0YXNldCxcCi0gICBkZXRlcm1pbmUgd2hhdCBwcm9wb3J0aW9uIG9mIHRob3NlIGFuYWx5c2VzIHJlamVjdGVkIHRoZSBudWxsIGh5cG90aGVzaXMuCgpZb3UgY2FuIGRvIHRoaXMgYnkgcHV0dGluZyB0aGUgY29udGVudHMgb2YgeW91ciBkYXRhIHNpbXVsYXRpb24gY29kZSB3aXRoaW4gYSBmdW5jdGlvbiwgdGhhdCB5b3UgdGhlbiByZXBsaWNhdGUgbWFueSB0aW1lcy4gUHV0IGFsbCB5b3VyIHBhcmFtZXRlcnMgYXMgYGFyZ3VtZW50c2AgdG8gdGhlIGZ1bmN0aW9uLgoKIyMjIyBTdHJ1Y3R1cmluZyBhIGZ1bmN0aW9uCgpUaGUgZ2VuZXJhbCBzdHJ1Y3R1cmUgb2YgYSBmdW5jdGlvbiBpcyBhcyBmb2xsb3dzOgoKYGBge3J9CmZ1bmN0aW9uX25hbWUgPC0gZnVuY3Rpb24obXlfYXJncykgewogICMgcHJvY2VzcyB0aGUgYXJndW1lbnRzCiAgIyByZXR1cm4gc29tZSB2YWx1ZQp9CmBgYAoKIyMjIENyZWF0ZSBjdXN0b20gZnVuY3Rpb25zCgpIZXJlIGlzIGEgY3VzdG9tIGZ1bmN0aW9uIGZvciB0aGUgaW5kZXBlbmRlbnQgc2FtcGxlcyB0LXRlc3QsIHRoYXQgb3V0cHV0cyBzZWxlY3RlZCB2YWx1ZXMuIEl0IHRha2VzIHRoZSBhcmd1bWVudHMgdGhhdCB3ZSBjcmVhdGVkIGVhcmxpZXIgd2hlbiBzaW11bGF0aW5nIGluZGVwZW5kZW50IHNhbXBsZXMuCgpgYGB7ciBpbmQtZnVuY30KaW5kX3NpbSA8LSBmdW5jdGlvbihBX3N1Yl9uLCBCX3N1Yl9uLCBBX21lYW4sIEJfbWVhbiwgQV9zZCwgQl9zZCkgewogIEFfc2NvcmVzIDwtIHJub3JtKEFfc3ViX24sIEFfbWVhbiwgQV9zZCkKICBCX3Njb3JlcyA8LSBybm9ybShCX3N1Yl9uLCBCX21lYW4sIEJfc2QpCiAgCiAgZGF0IDwtIHRpYmJsZSgKICAgIHN1Yl9jb25kaXRpb24gPSByZXAoIGMoIkEiLCAiQiIpLCBjKEFfc3ViX24sIEJfc3ViX24pICksCiAgICBzY29yZSA9IGMoQV9zY29yZXMsIEJfc2NvcmVzKQogICkKICB0IDwtIHQudGVzdChzY29yZX5zdWJfY29uZGl0aW9uLCBkYXQpCiAgCiAgI3JldHVybiBqdXN0IHRoZSB2YWx1ZXMgeW91IGNhcmUgYWJvdXQKICBsaXN0KAogICAgdCA9IHQkc3RhdGlzdGljLAogICAgY2lfbG93ZXIgPSB0JGNvbmYuaW50WzFdLAogICAgY2lfdXBwZXIgPSB0JGNvbmYuaW50WzJdLAogICAgcCA9IHQkcC52YWx1ZSwKICAgIGVzdGltYXRlID0gdCRlc3RpbWF0ZVsxXSAtIHQkZXN0aW1hdGVbMl0KICApCn0KYGBgCgpOb3cgcnVuIHlvdXIgbmV3IGZ1bmN0aW9uIHdpdGggdGhlIHZhbHVlcyB5b3UgdXNlZCBhYm92ZS4gTm90ZSB0aGF0IHlvdSBjYW4gZW50ZXIgdGhlc2UgZGlyZWN0bHkgaW50byB0aGUgZnVuY3Rpb25zIGFyZ3VtZW50cywgYnV0IGhlcmUgdGhleSBhcmUgY29kZWQgb3V0c2lkZSB0aGUgZnVuY3Rpb24gc28gdGhleSBjYW4gYmUgcmVmZXJlbmNlZCBpbiBhIGhpc3RvZ3JhbS4KCmBgYHtyfQojWW91IGNvdWxkIGNhbGwgaXQgbGlrZSB0aGlzOiBpbmRfc2ltKDUwLCA1MCwgMTAsIDExLCAyLjUsIDIuNSksIGJ1dCB0aGUgbGF0ZXIgbWFrZXMgaXQgZWFzaWVyIHRvIGNoYW5nZQpBX3N1Yl9uIDwtIDUwCkJfc3ViX24gPC0gNTAKQV9tZWFuIDwtIDEwCkJfbWVhbiA8LSAxMQpBX3NkIDwtIDIuNQpCX3NkIDwtIDIuNQppbmRfc2ltKEFfc3ViX24sIEJfc3ViX24sIEFfbWVhbiwgQl9tZWFuLCBBX3NkLCBCX3NkKQpgYGAKCk5vdyB5b3UgY2FuIHVzZSB0aGlzIGZ1bmN0aW9uIHRvIHJ1biBtYW55IHNpbXVsYXRpb25zLiBUaGVyZSBhcmUgYSBsb3Qgb2Ygd2F5cyB0byBkbyB0aGlzLiBUaGUgcGF0dGVybiBiZWxvdyB1c2VzIHRoZSBgbWFwX2RmYCBmdW5jdGlvbiBmcm9tIHRoZSBgcHVycnJgIHBhY2thZ2UsIGFuZCBzdG9yZXMgdGhlIHJlc3VsdHMgaW4gYSB2YXJpYWJsZSBjYWxsZWQgJ3NpbXVsYXRpb24nLiBUaGlzIHJ1bnMgMTAwMCBzaW11bGF0aW9ucywgd2hpY2ggaXMgZmluZSBmb3IgYSBkZW1vbnN0cmF0aW9uLCBidXQgeW91IHdvdWxkIGJlIGJldHRlciB3aXRoIDEwMCwwMDAuCgpgYGB7cn0Kc2ltdWxhdGlvbiA8LSBwdXJycjo6bWFwX2RmKDE6MTAwMCwgfmluZF9zaW0oQV9zdWJfbiwgQl9zdWJfbiwgQV9tZWFuLCBCX21lYW4sIEFfc2QsIEJfc2QpKQpgYGAKCiMjIyBEZXRlcm1pbmUgcG93ZXIKCllvdSB0aGVuIGNhbGN1bGF0ZSB0aGUgcHJvcG9ydGlvbiBvZiB0ZXN0cyB0aGF0IHJlamVjdCB0aGUgbnVsbC4gVGhlIHAtdmFsdWVzIGZyb20gZWFjaCBydW4gY2FuIGFsc28gYmUgcmVwcmVzZW50ZWQgaW4gYSBoaXN0b2dyYW0uIFdoYXQgaGFwcGVucyB0byBwLXZhbHVlcyB3aGVuIHRoZXJlIGlzIG5vIGVmZmVjdCAoZS5nLiB5b3Ugc2V0IEFfbWVhbiBlcXVhbCB0byBCX21lYW4pPwoKYGBge3IgcG93ZXItaGlzdH0KIyMjIyMjIHAtdmFsdWVzIDwgLjA1ID8gIyMjIyMjCnNpZy54MSA9IGlmZWxzZShzaW11bGF0aW9uJHAgPD0gLjA1LCAxLCAwKQoKaGlzdChzaW11bGF0aW9uJHAsIDIwLCB4YXhwPWMoMCwgMSwgMjApLCBjb2w9MiwgbWFpbiA9IHBhc3RlKCdwb3dlcjonLCBtZWFuKHNpZy54MSAqIDEwMCksICclIHdpdGgnLCBBX3N1Yl9uLCAnc3ViamVjdHMgcGVyIGdyb3VwJykpCmBgYAoKIyMjIFNhdmUgeW91ciBzaW11bGF0aW9uCgpZb3UgY2FuIHNhdmUgeW91ciB3b3JrIGFzIGEgbmV3IFIgc2NyaXB0IChlbmRpbmcgaW4gLlIpLCBvciBSbWFya2Rvd24gZmlsZSAoZW5kaW5nIGluIC5SbWQpLiBUaGVzZSBjYW4gdGhlbiBiZSB1cGxvYWRlZCB0byBzdXBwbGVtZW50IGEgcHJlcmVnaXN0cmF0aW9uLiBTZWUgZXhhbXBsZSAoaGVyZSlbPGh0dHBzOi8vb3NmLmlvL2tmeHRwLz5dLgo=</div>
 
 
 </div>
@@ -688,12 +744,17 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("simsWeek9.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

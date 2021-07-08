@@ -33,8 +33,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -45,17 +43,101 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -65,6 +147,7 @@ if (window.hljs) {
 </style>
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -291,29 +374,29 @@ $(document).ready(function () {
 <h3>Parameters</h3>
 <p>We started our simulation script by setting parameters for these values. Here these are the population values from which we’ll sample.</p>
 <p><em>What happens if we change the chunk option to “echo = FALSE”?</em></p>
-<pre class="r"><code>#simulate normally distributed data for an independent samples t-test
-muA &lt;- 50 #what&#39;s the population mean for condition A?
-muB &lt;- 55 #what&#39;s the population mean for condition B?
-
-n1 &lt;- 100 #how many participants group A?
-n2 &lt;- 100 #how many participants group B?
-
-sigma1 &lt;- 20 #population standard deviation of condition A?
-sigma2 &lt;- 20 #population standard deviation of condition B?</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simulate normally distributed data for an independent samples t-test</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>muA <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co">#what&#39;s the population mean for condition A?</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>muB <span class="ot">&lt;-</span> <span class="dv">55</span> <span class="co">#what&#39;s the population mean for condition B?</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co">#how many participants group A?</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co">#how many participants group B?</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sigma1 <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co">#population standard deviation of condition A?</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co">#population standard deviation of condition B?</span></span></code></pre></div>
 </div>
 <div id="scores" class="section level3">
 <h3>Scores</h3>
 <p>You can generate the scores using the <code>rnorm()</code> function (notice the code is shown here for demo purposes), then plot the distribution of scores for each group.</p>
-<pre class="r"><code>A_scores &lt;- rnorm(n1,muA,sigma1) #simulate a vector of 100 deviates from normal distribution
-B_scores &lt;- rnorm(n2,muB,sigma2) #simulate a vector of 100 deviates from normal distribution</code></pre>
-<pre class="r"><code>hist(A_scores)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n1,muA,sigma1) <span class="co">#simulate a vector of 100 deviates from normal distribution</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>B_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n2,muB,sigma2) <span class="co">#simulate a vector of 100 deviates from normal distribution</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(A_scores)</span></code></pre></div>
 <div class="figure">
 <img src="rmdWeek10_files/figure-html/histA-1.png" alt="Figure 1: Distribution of scores from Group A" width="672" />
 <p class="caption">
 Figure 1: Distribution of scores from Group A
 </p>
 </div>
-<pre class="r"><code>hist(B_scores)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(B_scores)</span></code></pre></div>
 <div class="figure">
 <img src="rmdWeek10_files/figure-html/histB-1.png" alt="Figure 2: Distribution of scores from Group B" width="672" />
 <p class="caption">
@@ -324,7 +407,7 @@ Figure 2: Distribution of scores from Group B
 <div id="analyses" class="section level3">
 <h3>Analyses</h3>
 <p>You can then run your inferential test on your new data.</p>
-<pre class="r"><code>t.test(A_scores,B_scores)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A_scores,B_scores)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -337,7 +420,7 @@ Figure 2: Distribution of scores from Group B
 ## mean of x mean of y 
 ##  49.79264  55.65873</code></pre>
 <p>If we want to report the results from the statistical test in an inline report (i.e. a sentence), we can assign it to an object and extract the parameters we need in text:</p>
-<pre class="r"><code>mod1 &lt;- broom::tidy(t.test(A_scores,B_scores))</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">t.test</span>(A_scores,B_scores))</span></code></pre></div>
 <pre><code>If we include the following inline text, we can include results directly without copying or pasting:    </code></pre>
 <p>A <code>`r mod1$method`</code> indicated that participants in condition A (<em>M</em> = <code>`r mean(A_scores)`</code>, <em>SD</em> = <code>`r sd(A_scores)`</code>) did [not] score significantly lower than participants in condition B (<em>M</em> = <code>`r mean(B_scores)`</code>, <em>SD</em> = <code>17.523956</code>), <em>t</em>(<code>`r mod1$parameter`</code>) = <code>`r mod1$statistic`</code>, <em>p</em> = <code>`r mod1$p.value`</code>.</p>
 <p>This will print out as follows:</p>
@@ -358,7 +441,7 @@ and choosing the template.</p>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUm1hcmtkb3duIGJhc2ljcyIKYXV0aG9yOiAiQ3lsY2lhIEJvbGliYXVnaCIKb3V0cHV0OiAKICAgIGh0bWxfZG9jdW1lbnQ6CiAgICAgICAgY29kZV9kb3dubG9hZDogdHJ1ZQotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IgbGliLCBlY2hvPUZBTFNFLCBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKIyBkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoImRlYnJ1aW5lL2ZhdXgiKSAKIyBsaWJyYXJ5KGZhdXgpCmxpYnJhcnkoYWNhZGVtaWNXcml0ZVIpCmBgYApIZXJlIGlzIHNvbWUgY29kZSBhbmQgb3V0cHV0IGZyb20gbGFzdCB3ZWVrJ3Mgc2ltdWxhdGlvbnMuIFdlJ2xsIHVzZSBpdCB0aGlzIHdlZWsgdG8gc2VlIGhvdyB3ZSBjYW4gZW1iZWQgZmlndXJlcywgc2V0IGNodW5rIG9wdGlvbnMsIGFuZCB1c2Ugc3RhdHMgaW5saW5lLgoKIyMgU2ltdWxhdGUgaW5kZXBlbmRlbnQgc2FtcGxlcwoKV2Ugc3RhcnRlZCB3aXRoIGEgc2ltcGxlIGJldHdlZW4gc3ViamVjdHMgZGVzaWduLCB3aGVyZSB0aGUgaW5kZXBlbmRlbnQgKGdyb3VwaW5nKSB2YXJpYWJsZSBoYXMgdHdvIGxldmVscywgYW5kIHRoZSBkZXBlbmRlbnQgdmFyaWFibGUgaXMgZnJvbSBhIG5vcm1hbCBkaXN0cmlidXRpb24uIFRvIHNpbXVsYXRlIHRoaXMgZGF0YXNldCwgd2UgbmVlZCB0byBrbm93CgoqIEhvdyBtYW55IHN1YmplY3RzIGFyZSBpbiBlYWNoIGNvbmRpdGlvbj8KKiBXaGF0IGFyZSB0aGUgc2NvcmUgbWVhbnMgKGZvciBlYWNoIGxldmVsIG9mIHRoZSBpbmRlcGVuZGVudCB2YXJpYWJsZSk/CiogV2hhdCBhcmUgdGhlIHNjb3JlIHZhcmlhbmNlcz8KCiMjIyBQYXJhbWV0ZXJzIHsjaW5kLXBhcmFtc30KCldlIHN0YXJ0ZWQgb3VyIHNpbXVsYXRpb24gc2NyaXB0IGJ5IHNldHRpbmcgcGFyYW1ldGVycyBmb3IgdGhlc2UgdmFsdWVzLiBIZXJlIHRoZXNlIGFyZSB0aGUgcG9wdWxhdGlvbiB2YWx1ZXMgZnJvbSB3aGljaCB3ZSdsbCBzYW1wbGUuCgpfV2hhdCBoYXBwZW5zIGlmIHdlIGNoYW5nZSB0aGUgY2h1bmsgb3B0aW9uIHRvICJlY2hvID0gRkFMU0UiP18KCmBgYHtyIGluZC12YXJzLCBlY2hvID0gVFJVRX0KI3NpbXVsYXRlIG5vcm1hbGx5IGRpc3RyaWJ1dGVkIGRhdGEgZm9yIGFuIGluZGVwZW5kZW50IHNhbXBsZXMgdC10ZXN0Cm11QSA8LSA1MCAjd2hhdCdzIHRoZSBwb3B1bGF0aW9uIG1lYW4gZm9yIGNvbmRpdGlvbiBBPwptdUIgPC0gNTUgI3doYXQncyB0aGUgcG9wdWxhdGlvbiBtZWFuIGZvciBjb25kaXRpb24gQj8KCm4xIDwtIDEwMCAjaG93IG1hbnkgcGFydGljaXBhbnRzIGdyb3VwIEE/Cm4yIDwtIDEwMCAjaG93IG1hbnkgcGFydGljaXBhbnRzIGdyb3VwIEI/CgpzaWdtYTEgPC0gMjAgI3BvcHVsYXRpb24gc3RhbmRhcmQgZGV2aWF0aW9uIG9mIGNvbmRpdGlvbiBBPwpzaWdtYTIgPC0gMjAgI3BvcHVsYXRpb24gc3RhbmRhcmQgZGV2aWF0aW9uIG9mIGNvbmRpdGlvbiBCPwpgYGAKCiMjIyBTY29yZXMKCllvdSBjYW4gZ2VuZXJhdGUgdGhlIHNjb3JlcyB1c2luZyB0aGUgYHJub3JtKClgIGZ1bmN0aW9uIChub3RpY2UgdGhlIGNvZGUgaXMgIHNob3duIGhlcmUgZm9yIGRlbW8gcHVycG9zZXMpLCB0aGVuIHBsb3QgdGhlIGRpc3RyaWJ1dGlvbiBvZiBzY29yZXMgZm9yIGVhY2ggZ3JvdXAuCgpgYGB7ciBpbmQtZGF0LCBlY2hvPVRSVUV9CkFfc2NvcmVzIDwtIHJub3JtKG4xLG11QSxzaWdtYTEpICNzaW11bGF0ZSBhIHZlY3RvciBvZiAxMDAgZGV2aWF0ZXMgZnJvbSBub3JtYWwgZGlzdHJpYnV0aW9uCkJfc2NvcmVzIDwtIHJub3JtKG4yLG11QixzaWdtYTIpICNzaW11bGF0ZSBhIHZlY3RvciBvZiAxMDAgZGV2aWF0ZXMgZnJvbSBub3JtYWwgZGlzdHJpYnV0aW9uCmBgYApgYGB7ciBoaXN0QSwgZmlnLmNhcCA9ICJGaWd1cmUgMTogRGlzdHJpYnV0aW9uIG9mIHNjb3JlcyBmcm9tIEdyb3VwIEEifQpoaXN0KEFfc2NvcmVzKQpgYGAKCmBgYHtyIGhpc3RCLCBmaWcuY2FwID0gIkZpZ3VyZSAyOiBEaXN0cmlidXRpb24gb2Ygc2NvcmVzIGZyb20gR3JvdXAgQiJ9Cmhpc3QoQl9zY29yZXMpCmBgYAojIyMgIEFuYWx5c2VzICAgCgpZb3UgY2FuIHRoZW4gcnVuIHlvdXIgaW5mZXJlbnRpYWwgdGVzdCBvbiB5b3VyIG5ldyBkYXRhLgpgYGB7ciB0LXRlc3QxfQp0LnRlc3QoQV9zY29yZXMsQl9zY29yZXMpCmBgYApJZiB3ZSB3YW50IHRvIHJlcG9ydCB0aGUgcmVzdWx0cyBmcm9tIHRoZSBzdGF0aXN0aWNhbCB0ZXN0IGluIGFuIGlubGluZSByZXBvcnQgKGkuZS4gYSBzZW50ZW5jZSksIHdlIGNhbiBhc3NpZ24gaXQgdG8gYW4gb2JqZWN0IGFuZCBleHRyYWN0IHRoZSBwYXJhbWV0ZXJzIHdlIG5lZWQgaW4gdGV4dDoKYGBge3IgdC10ZXN0Mn0KbW9kMSA8LSBicm9vbTo6dGlkeSh0LnRlc3QoQV9zY29yZXMsQl9zY29yZXMpKQpgYGAKCiAgICBJZiB3ZSBpbmNsdWRlIHRoZSBmb2xsb3dpbmcgaW5saW5lIHRleHQsIHdlIGNhbiBpbmNsdWRlIHJlc3VsdHMgZGlyZWN0bHkgd2l0aG91dCBjb3B5aW5nIG9yIHBhc3Rpbmc6ICAgIAogICAgCkEgYGAgYHIKbW9kMSRtZXRob2RgIGBgIGluZGljYXRlZCB0aGF0IHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQSAoKk0qID0gYGAgYHIKbWVhbihBX3Njb3JlcylgIGBgLCAqU0QqID0gYGAgYHIKc2QoQV9zY29yZXMpYCBgYCkgZGlkIFtub3RdIHNjb3JlIHNpZ25pZmljYW50bHkgbG93ZXIgdGhhbiBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEIgKCpNKiA9IGBgIGByCm1lYW4oQl9zY29yZXMpYCBgYCwgCipTRCogPSBgYCBgciAKc2QoQl9zY29yZXMpYCBgYCksIAoqdCooYGAgYHIKbW9kMSRwYXJhbWV0ZXJgIGBgKSA9IApgYCBgcgptb2QxJHN0YXRpc3RpY2AgYGAsIAoqcCogPSBgYCBgcgptb2QxJHAudmFsdWVgIGBgLgoKVGhpcyB3aWxsIHByaW50IG91dCBhcyBmb2xsb3dzOiAgCgo+IEEgYHIgbW9kMSRtZXRob2RgIGluZGljYXRlZCB0aGF0IHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQSAoKk0qID0gYHIgbWVhbihBX3Njb3JlcylgLCAqU0QqID0gYHIgc2QoQV9zY29yZXMpYCkgZGlkIFtub3RdIHNjb3JlIHNpZ25pZmljYW50bHkgbG93ZXIgdGhhbiBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEIgKCpNKiA9YHIgbWVhbihCX3Njb3JlcylgLCAqU0QqID0gYHIgc2QoQl9zY29yZXMpYCksICp0KihgciBtb2QxJHBhcmFtZXRlcmApID0gYHIgbW9kMSRzdGF0aXN0aWNgLCAqcCogPSBgciBtb2QxJHAudmFsdWVgLgoKCgogVW5mb3J0dW5hdGVseSwgdGhlIG51bWJlciBvZiBkaWdpdHMgaXNuJ3QgaGVscGZ1bC4gVGhlIGByb3VuZGAgZnVuY3Rpb24gY2FuIGhlbHA6CiAKPiBBIGByIG1vZDEkbWV0aG9kYCBpbmRpY2F0ZWQgdGhhdCBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEEgKCpNKiA9IGByIHJvdW5kKG1lYW4oQV9zY29yZXMpLDIpYCwgKlNEKiA9IGByIHJvdW5kKHNkKEFfc2NvcmVzKSwyKWApIGRpZCBbbm90XSBzY29yZSBzaWduaWZpY2FudGx5IGxvd2VyIHRoYW4gcGFydGljaXBhbnRzIGluIGNvbmRpdGlvbiBCICgqTSogPSBgciByb3VuZChtZWFuKEJfc2NvcmVzKSwyKWAsICpTRCogPSBgciByb3VuZChzZChCX3Njb3JlcyksMilgKSwgKnQqKGByIHJvdW5kKG1vZDEkcGFyYW1ldGVyLDIpYCkgPSBgciByb3VuZChtb2QxJHN0YXRpc3RpYywyKWAsICpwKiA9IGByIHJvdW5kKG1vZDEkcC52YWx1ZSwyKWAuCiAKIyMjIEFQQSBmb3JtYXR0aW5nCkV2ZW4gd2l0aCB0aGUgaGVscCBvZiB0aGUgcm91bmQgZnVuY3Rpb24sIHRoZXJlIGFyZSBzdGlsbCBhIG51bWJlciBvZiBmb3JtYXR0aW5nIGlzc3VlcyB3aGljaCB3b3VsZCBuZWVkIHRvIGJlIGZpeGVkIGlmIHdlIHdlcmUgZHJhZnRpbmcgYW4gQVBBIHN0eWxlIHJlcG9ydCBvciBtYW51c2NyaXB0LiBMdWNraWx5IHRoZSBgUGFwYWphYCBbcGFja2FnZV0oaHR0cHM6Ly9jcnNoLmdpdGh1Yi5pby9wYXBhamFfbWFuL2luZGV4Lmh0bWwpIGhhcyBhdXRvbWF0ZWQgbWFueSBvZiB0aGVzZSBmdW5jdGlvbnMuIAoKWW91IGNhbiB0cnkgaXQgb3V0IGJ5IG9wZW5pbmcgYSBuZXcgUm1kIGRvY3VtZW50LCBpbnN0YWxsaW5nIFBhcGFqYSBmcm9tIHRoZSBHaXRIdWIgcmVwb3NpdG9yeToKaW5zdGFsbC5wYWNrYWdlcygiZGV2dG9vbHMiKSAgCmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiY3JzaC9wYXBhamEiKSwgIAphbmQgY2hvb3NpbmcgdGhlIHRlbXBsYXRlLgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUm1hcmtkb3duIGJhc2ljcyIKYXV0aG9yOiAiQ3lsY2lhIEJvbGliYXVnaCIKb3V0cHV0OiAKICAgIGh0bWxfZG9jdW1lbnQ6CiAgICAgICAgY29kZV9kb3dubG9hZDogdHJ1ZQogICAgICAgIGNzczogc3R5bGUuY3NzCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciBsaWIsIGVjaG89RkFMU0UsIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CmxpYnJhcnkodGlkeXZlcnNlKQojIGRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiZGVicnVpbmUvZmF1eCIpIAojIGxpYnJhcnkoZmF1eCkKbGlicmFyeShhY2FkZW1pY1dyaXRlUikKYGBgCkhlcmUgaXMgc29tZSBjb2RlIGFuZCBvdXRwdXQgZnJvbSBsYXN0IHdlZWsncyBzaW11bGF0aW9ucy4gV2UnbGwgdXNlIGl0IHRoaXMgd2VlayB0byBzZWUgaG93IHdlIGNhbiBlbWJlZCBmaWd1cmVzLCBzZXQgY2h1bmsgb3B0aW9ucywgYW5kIHVzZSBzdGF0cyBpbmxpbmUuCgojIyBTaW11bGF0ZSBpbmRlcGVuZGVudCBzYW1wbGVzCgpXZSBzdGFydGVkIHdpdGggYSBzaW1wbGUgYmV0d2VlbiBzdWJqZWN0cyBkZXNpZ24sIHdoZXJlIHRoZSBpbmRlcGVuZGVudCAoZ3JvdXBpbmcpIHZhcmlhYmxlIGhhcyB0d28gbGV2ZWxzLCBhbmQgdGhlIGRlcGVuZGVudCB2YXJpYWJsZSBpcyBmcm9tIGEgbm9ybWFsIGRpc3RyaWJ1dGlvbi4gVG8gc2ltdWxhdGUgdGhpcyBkYXRhc2V0LCB3ZSBuZWVkIHRvIGtub3cKCiogSG93IG1hbnkgc3ViamVjdHMgYXJlIGluIGVhY2ggY29uZGl0aW9uPwoqIFdoYXQgYXJlIHRoZSBzY29yZSBtZWFucyAoZm9yIGVhY2ggbGV2ZWwgb2YgdGhlIGluZGVwZW5kZW50IHZhcmlhYmxlKT8KKiBXaGF0IGFyZSB0aGUgc2NvcmUgdmFyaWFuY2VzPwoKIyMjIFBhcmFtZXRlcnMgeyNpbmQtcGFyYW1zfQoKV2Ugc3RhcnRlZCBvdXIgc2ltdWxhdGlvbiBzY3JpcHQgYnkgc2V0dGluZyBwYXJhbWV0ZXJzIGZvciB0aGVzZSB2YWx1ZXMuIEhlcmUgdGhlc2UgYXJlIHRoZSBwb3B1bGF0aW9uIHZhbHVlcyBmcm9tIHdoaWNoIHdlJ2xsIHNhbXBsZS4KCl9XaGF0IGhhcHBlbnMgaWYgd2UgY2hhbmdlIHRoZSBjaHVuayBvcHRpb24gdG8gImVjaG8gPSBGQUxTRSI/XwoKYGBge3IgaW5kLXZhcnMsIGVjaG8gPSBUUlVFfQojc2ltdWxhdGUgbm9ybWFsbHkgZGlzdHJpYnV0ZWQgZGF0YSBmb3IgYW4gaW5kZXBlbmRlbnQgc2FtcGxlcyB0LXRlc3QKbXVBIDwtIDUwICN3aGF0J3MgdGhlIHBvcHVsYXRpb24gbWVhbiBmb3IgY29uZGl0aW9uIEE/Cm11QiA8LSA1NSAjd2hhdCdzIHRoZSBwb3B1bGF0aW9uIG1lYW4gZm9yIGNvbmRpdGlvbiBCPwoKbjEgPC0gMTAwICNob3cgbWFueSBwYXJ0aWNpcGFudHMgZ3JvdXAgQT8KbjIgPC0gMTAwICNob3cgbWFueSBwYXJ0aWNpcGFudHMgZ3JvdXAgQj8KCnNpZ21hMSA8LSAyMCAjcG9wdWxhdGlvbiBzdGFuZGFyZCBkZXZpYXRpb24gb2YgY29uZGl0aW9uIEE/CnNpZ21hMiA8LSAyMCAjcG9wdWxhdGlvbiBzdGFuZGFyZCBkZXZpYXRpb24gb2YgY29uZGl0aW9uIEI/CmBgYAoKIyMjIFNjb3JlcwoKWW91IGNhbiBnZW5lcmF0ZSB0aGUgc2NvcmVzIHVzaW5nIHRoZSBgcm5vcm0oKWAgZnVuY3Rpb24gKG5vdGljZSB0aGUgY29kZSBpcyAgc2hvd24gaGVyZSBmb3IgZGVtbyBwdXJwb3NlcyksIHRoZW4gcGxvdCB0aGUgZGlzdHJpYnV0aW9uIG9mIHNjb3JlcyBmb3IgZWFjaCBncm91cC4KCmBgYHtyIGluZC1kYXQsIGVjaG89VFJVRX0KQV9zY29yZXMgPC0gcm5vcm0objEsbXVBLHNpZ21hMSkgI3NpbXVsYXRlIGEgdmVjdG9yIG9mIDEwMCBkZXZpYXRlcyBmcm9tIG5vcm1hbCBkaXN0cmlidXRpb24KQl9zY29yZXMgPC0gcm5vcm0objIsbXVCLHNpZ21hMikgI3NpbXVsYXRlIGEgdmVjdG9yIG9mIDEwMCBkZXZpYXRlcyBmcm9tIG5vcm1hbCBkaXN0cmlidXRpb24KYGBgCmBgYHtyIGhpc3RBLCBmaWcuY2FwID0gIkZpZ3VyZSAxOiBEaXN0cmlidXRpb24gb2Ygc2NvcmVzIGZyb20gR3JvdXAgQSJ9Cmhpc3QoQV9zY29yZXMpCmBgYAoKYGBge3IgaGlzdEIsIGZpZy5jYXAgPSAiRmlndXJlIDI6IERpc3RyaWJ1dGlvbiBvZiBzY29yZXMgZnJvbSBHcm91cCBCIn0KaGlzdChCX3Njb3JlcykKYGBgCiMjIyAgQW5hbHlzZXMgICAKCllvdSBjYW4gdGhlbiBydW4geW91ciBpbmZlcmVudGlhbCB0ZXN0IG9uIHlvdXIgbmV3IGRhdGEuCmBgYHtyIHQtdGVzdDF9CnQudGVzdChBX3Njb3JlcyxCX3Njb3JlcykKYGBgCklmIHdlIHdhbnQgdG8gcmVwb3J0IHRoZSByZXN1bHRzIGZyb20gdGhlIHN0YXRpc3RpY2FsIHRlc3QgaW4gYW4gaW5saW5lIHJlcG9ydCAoaS5lLiBhIHNlbnRlbmNlKSwgd2UgY2FuIGFzc2lnbiBpdCB0byBhbiBvYmplY3QgYW5kIGV4dHJhY3QgdGhlIHBhcmFtZXRlcnMgd2UgbmVlZCBpbiB0ZXh0OgpgYGB7ciB0LXRlc3QyfQptb2QxIDwtIGJyb29tOjp0aWR5KHQudGVzdChBX3Njb3JlcyxCX3Njb3JlcykpCmBgYAoKICAgIElmIHdlIGluY2x1ZGUgdGhlIGZvbGxvd2luZyBpbmxpbmUgdGV4dCwgd2UgY2FuIGluY2x1ZGUgcmVzdWx0cyBkaXJlY3RseSB3aXRob3V0IGNvcHlpbmcgb3IgcGFzdGluZzogICAgCiAgICAKQSBgYCBgcgptb2QxJG1ldGhvZGAgYGAgaW5kaWNhdGVkIHRoYXQgcGFydGljaXBhbnRzIGluIGNvbmRpdGlvbiBBICgqTSogPSBgYCBgcgptZWFuKEFfc2NvcmVzKWAgYGAsICpTRCogPSBgYCBgcgpzZChBX3Njb3JlcylgIGBgKSBkaWQgW25vdF0gc2NvcmUgc2lnbmlmaWNhbnRseSBsb3dlciB0aGFuIHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQiAoKk0qID0gYGAgYHIKbWVhbihCX3Njb3JlcylgIGBgLCAKKlNEKiA9IGBgIGByIApzZChCX3Njb3JlcylgIGBgKSwgCip0KihgYCBgcgptb2QxJHBhcmFtZXRlcmAgYGApID0gCmBgIGByCm1vZDEkc3RhdGlzdGljYCBgYCwgCipwKiA9IGBgIGByCm1vZDEkcC52YWx1ZWAgYGAuCgpUaGlzIHdpbGwgcHJpbnQgb3V0IGFzIGZvbGxvd3M6ICAKCj4gQSBgciBtb2QxJG1ldGhvZGAgaW5kaWNhdGVkIHRoYXQgcGFydGljaXBhbnRzIGluIGNvbmRpdGlvbiBBICgqTSogPSBgciBtZWFuKEFfc2NvcmVzKWAsICpTRCogPSBgciBzZChBX3Njb3JlcylgKSBkaWQgW25vdF0gc2NvcmUgc2lnbmlmaWNhbnRseSBsb3dlciB0aGFuIHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQiAoKk0qID1gciBtZWFuKEJfc2NvcmVzKWAsICpTRCogPSBgciBzZChCX3Njb3JlcylgKSwgKnQqKGByIG1vZDEkcGFyYW1ldGVyYCkgPSBgciBtb2QxJHN0YXRpc3RpY2AsICpwKiA9IGByIG1vZDEkcC52YWx1ZWAuCgoKCiBVbmZvcnR1bmF0ZWx5LCB0aGUgbnVtYmVyIG9mIGRpZ2l0cyBpc24ndCBoZWxwZnVsLiBUaGUgYHJvdW5kYCBmdW5jdGlvbiBjYW4gaGVscDoKIAo+IEEgYHIgbW9kMSRtZXRob2RgIGluZGljYXRlZCB0aGF0IHBhcnRpY2lwYW50cyBpbiBjb25kaXRpb24gQSAoKk0qID0gYHIgcm91bmQobWVhbihBX3Njb3JlcyksMilgLCAqU0QqID0gYHIgcm91bmQoc2QoQV9zY29yZXMpLDIpYCkgZGlkIFtub3RdIHNjb3JlIHNpZ25pZmljYW50bHkgbG93ZXIgdGhhbiBwYXJ0aWNpcGFudHMgaW4gY29uZGl0aW9uIEIgKCpNKiA9IGByIHJvdW5kKG1lYW4oQl9zY29yZXMpLDIpYCwgKlNEKiA9IGByIHJvdW5kKHNkKEJfc2NvcmVzKSwyKWApLCAqdCooYHIgcm91bmQobW9kMSRwYXJhbWV0ZXIsMilgKSA9IGByIHJvdW5kKG1vZDEkc3RhdGlzdGljLDIpYCwgKnAqID0gYHIgcm91bmQobW9kMSRwLnZhbHVlLDIpYC4KIAojIyMgQVBBIGZvcm1hdHRpbmcKRXZlbiB3aXRoIHRoZSBoZWxwIG9mIHRoZSByb3VuZCBmdW5jdGlvbiwgdGhlcmUgYXJlIHN0aWxsIGEgbnVtYmVyIG9mIGZvcm1hdHRpbmcgaXNzdWVzIHdoaWNoIHdvdWxkIG5lZWQgdG8gYmUgZml4ZWQgaWYgd2Ugd2VyZSBkcmFmdGluZyBhbiBBUEEgc3R5bGUgcmVwb3J0IG9yIG1hbnVzY3JpcHQuIEx1Y2tpbHkgdGhlIGBQYXBhamFgIFtwYWNrYWdlXShodHRwczovL2Nyc2guZ2l0aHViLmlvL3BhcGFqYV9tYW4vaW5kZXguaHRtbCkgaGFzIGF1dG9tYXRlZCBtYW55IG9mIHRoZXNlIGZ1bmN0aW9ucy4gCgpZb3UgY2FuIHRyeSBpdCBvdXQgYnkgb3BlbmluZyBhIG5ldyBSbWQgZG9jdW1lbnQsIGluc3RhbGxpbmcgUGFwYWphIGZyb20gdGhlIEdpdEh1YiByZXBvc2l0b3J5OgppbnN0YWxsLnBhY2thZ2VzKCJkZXZ0b29scyIpICAKZGV2dG9vbHM6Omluc3RhbGxfZ2l0aHViKCJjcnNoL3BhcGFqYSIpLCAgCmFuZCBjaG9vc2luZyB0aGUgdGVtcGxhdGUuCg==</div>
 
 
 

@@ -14,3 +14,5 @@ Slides for Session 5 in Week 10 can be found [here](./05DigitalTools.pdf), and R
 ◆	Use Papaja package to generate APA formatting
 
 FOLLOW-UP: complete manuscript squib
+
+![](./EROS_padded_logo.png){width="30%"} **For more info, contact: [cylcia.bolibaugh\@york.ac.uk](mailto:cylcia.bolibaugh@york.ac.uk){.email}**

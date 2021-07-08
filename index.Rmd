@@ -2,34 +2,24 @@
 title: "Digital Tools for Reproducible Research"
 ---
 
-Here you will find the materials associated with _Digital Tools for Reproducible Research: A reproducible project from start to finish_, in the 
-[Department of Education, University of York](https://www.york.ac.uk/education/).
-  
+Here you will find the materials associated with *Digital Tools for Reproducible Research: A reproducible project from start to finish*, in the [Department of Education, University of York](https://www.york.ac.uk/education/).
+
 Materials and a demo OSF site for the project can additionally be found [here](https://osf.io/jrxyw/).
-                       
-This series of 5 brownbags provides a practical introduction to digital tools needed to complete a reproducible research project. Each session will move through a successive stage of a project, with a focus on tangible outputs (e.g. OSF project page, preregistration, analysis script and power analysis, reproducible manuscript template). 
+
+This series of 5 brownbags provides a practical introduction to digital tools needed to complete a reproducible research project. Each session will move through a successive stage of a project, with a focus on tangible outputs (e.g. OSF project page, preregistration, analysis script and power analysis, reproducible manuscript template).
 
 The brownbags are aimed at researchers (staff and PhD) who already have a reasonable grounding in data analysis and experimental/study design. Some sessions (e.g. data simulation) will be focused on quantitative analyses. Knowledge of the R statistical programming language is not assumed, and while scripts will be provided to get started in appropriate sessions, the sessions are not a complete introduction to R.
 
-It is envisaged that participants may take the opportunity to work on a planned empirical study, and will finish the sessions with a completed preregistration which includes analysis scripts and power estimates, as well as the template for the manuscript. The sessions can be scaled by focusing on a replication of a published paper. 
+You might want to take the opportunity to work on a planned empirical study; if so you will finish the sessions with a completed preregistration which includes analysis scripts and power estimates, as well as the template for the manuscript. If you don't have a planned study, the sessions can be scaled by focusing on a replication of a published paper.
 
-*_Attendees will need to bring their own laptop in order to fully participate._*
+*You will need to bring your own laptop in order to fully participate.*
 
-    Wednesdays before coffee, 9.30am - 10.30 am
-    Summer Term 2019, weeks 5, 6, 8, 9, 10
-    Education SCR, D/L/104
+**Sessions:**
 
+-   Week 5 [Reproducible research](./Week5.html)\
+-   Week 6 [Preregistration](./Week6.html)\
+-   Week 8 [Open data](./Week8.html)\
+-   Week 9 [Reproducible analyses, power analysis and simulation](./Week9.html)\
+-   Week 10 [Writing a reproducible manuscript](./Week10.html)
 
-
-__Sessions:__
-
-
-* Week 5 [Reproducible research](./Week5.html) 15 May 2019     
-* Week 6 [Preregistration](./Week6.html) 22 May 2019     
-* Week 8 [Open data](./Week8.html) 5 June 2019       
-* Week 9 [Reproducible analyses, power analysis and simulation](./Week9.html) 12 June 2019    
-* Week 10 [Writing a reproducible manuscript](./Week10.html) 19 June 2019      
-   
-For more info, contact: cylcia.bolibaugh@york.ac.uk
-
-
+![](./EROS_padded_logo.png){width="30%"} **For more info, contact: [cylcia.bolibaugh\@york.ac.uk](mailto:cylcia.bolibaugh@york.ac.uk){.email}**

@@ -5,32 +5,25 @@ output:
   html_document:
     toc: true
     toc_float: true
+    code_download: true
 ---
+
 ```{r lib, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 # devtools::install_github("debruine/faux") 
 library(faux)
 ```
-    
+
     This material is distributed under a Creative Commons licence. CC-BY-SA 4.0.    
     Much of this material has been adapted from the following Creative Commons materials:      
 
-* DeBruine, L. (2019). Tutorials. [https://debruine.github.io/tutorials/](https://debruine.github.io/tutorials/index.html)  
+-   DeBruine, L. (2019). Tutorials. [https://debruine.github.io/tutorials/](https://debruine.github.io/tutorials/index.html)
 
+-   Crump, Matthew J. C. (2017). Programming for Psychologists: Data Creation and Analysis (Version 1.1). <https://crumplab.github.io/programmingforpsych/>
 
-    Some of this material has been adapted from these other Creative Commons materials:  
-    
+-   Bishop, D. V. M., Chambers, C., & Munafo, M. R. (2019, January 10). Bishop. Retrieved from [osf.io/skz3j](osf.io/skz3j)
 
-* Crump, Matthew J. C. (2017). Programming for Psychologists: Data Creation and Analysis (Version 1.1). https://crumplab.github.io/programmingforpsych/  
-
-
-* Bishop, D. V. M., Chambers, C., & Munafo, M. R. (2019, January 10). Bishop. Retrieved from osf.io/skz3j  
-
-
-  
----  
-  
-
+------------------------------------------------------------------------
 
 ## Tasks {.tabset}
 
@@ -38,45 +31,37 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Data generation and output
 
-* Simulate data for an [Independent samples] design 
-* Simulate data for a [Paired samples] design
-* Put simulated data into a table, and [Export dataset] to CSV  
+-   Simulate data for an [Independent samples] design
+-   Simulate data for a [Paired samples] design
+-   Put simulated data into a table, and [Export dataset](#export-dataset-1) to CSV
 
-
-  
----  
-   
+------------------------------------------------------------------------
 
 ### Calculating power using simulations
 
-* [Create custom functions] to repeatedly simulate data
-* Extract p-values, and [determine power] for given sample and effect sizes
-* Save your analysis and upload to your demo OSF preregistration
+-   [Create custom functions] to repeatedly simulate data
+-   Extract p-values, and [determine power] for given sample and effect sizes
+-   Save your analysis and upload to your demo OSF preregistration
 
-  
----  
-   
+------------------------------------------------------------------------
+
 ### More advanced designs
 
 The topics below are not covered in these materials, but can be followed up in links.
 
-* simulate more complicated designs https://github.com/Lakens/ANOVA_power_simulation
+-   simulate more complicated designs <https://github.com/Lakens/ANOVA_power_simulation>
 
-* determine power for linear mixed models with random intercepts, and random slopes https://psyarxiv.com/xp5cy
+-   determine power for linear mixed models with random intercepts, and random slopes <https://psyarxiv.com/xp5cy>
 
+------------------------------------------------------------------------
 
-
-  
----  
-   
- 
 ## Independent samples
 
 Start with a simple between subjects design, where the independent (grouping) variable has two levels, and the dependent variable is from a normal distribution. To simulate this dataset, we need to know
 
-* How many subjects are in each condition?
-* What are the score means (for each level of the independent variable)?
-* What are the score variances?
+-   How many subjects are in each condition?
+-   What are the score means (for each level of the independent variable)?
+-   What are the score variances?
 
 ### Parameters {#ind-params}
 
@@ -110,13 +95,14 @@ You've now generated two vectors (container lists) of scores. You can stop here 
 ```{r t-test1}
 t.test(A_scores,B_scores)
 ```
+
 Look at the output, and re-run the data simulation, and t-test chunks. What happens?
 
-### Tibble  
+### Tibble
 
 It is usually more useful to put your simulated data into a data table that looks like what you might eventually import from a CSV file with your actual experimental data. *You can export this simulated dataset as a CSV and upload to your demo OSF project.*
 
-If you use the `tidyverse`,  you'll create a data table using the `tibble()` function (but you can use `data.frame()` if you must). We need to know what condition each subject is in, so set the first `n1` values to "A" and the next `n2` values to "B". Then set the score to the `A_scores` `concatenated` to the `B_scores`. THe tibble is assigned to `dat`.
+If you use the `tidyverse`, you'll create a data table using the `tibble()` function (but you can use `data.frame()` if you must). We need to know what condition each subject is in, so set the first `n1` values to "A" and the next `n2` values to "B". Then set the score to the `A_scores` `concatenated` to the `B_scores`. THe tibble is assigned to `dat`.
 
 ```{r ind-tibble}
 dat <- tibble(
@@ -125,11 +111,10 @@ dat <- tibble(
 )
 ```
 
-
 ### Export dataset
 
-
 You can export the tibble to a csv file:
+
 ```{r export-csv}
 write.csv(dat, file ="independent_samples.csv",row.names = FALSE ) 
 ```
@@ -138,10 +123,10 @@ write.csv(dat, file ="independent_samples.csv",row.names = FALSE )
 
 Now let's try a paired-samples design where the variables are from a normal distribution. Each subject produces two scores (in conditions A and B, which could either be, e.g. a pretest and postest, or scores from two levels of one measure, e.g. grammatical and ungrammatical sentences). What we need to know about these two scores is:
 
-* How many subjects?
-* What are the score means?
-* What are the score variances?
-* What is the correlation between the scores?
+-   How many subjects?
+-   What are the score means?
+-   What are the score variances?
+-   What is the correlation between the scores?
 
 ### Parameters {#paired-params}
 
@@ -169,28 +154,26 @@ dat <- faux::rnorm_multi(
 )
 ```
 
-
 And check your distributions and correlation graphically:
+
 ```{r plots}
 hist(dat$A)
 hist(dat$B)
 plot(dat$A,dat$B)
 ```
 
-
 ### Analysis
 
-Again, you can analyse your simulated data. 
+Again, you can analyse your simulated data.
 
 ```{r paired-test}
 t.test(dat$A, dat$B, paired = TRUE)
 ```
 
-
-### Export dataset
-
+### Export dataset {#export-dataset-1}
 
 You can export the tibble to a csv file:
+
 ```{r export-csv2}
 write.csv(dat, file ="paired_samples.csv",row.names = FALSE ) 
 ```
@@ -199,9 +182,9 @@ write.csv(dat, file ="paired_samples.csv",row.names = FALSE )
 
 In order to simulate more complex designs, you will want to use some of the useful built-in R functions. A good overview can be found [here](https://aosmith.rbind.io/2018/08/29/getting-started-simulating-data/).
 
-* Simulate data from other distributions: `rbinom()` for binomial data, `rpois()` for count data, and `runif()` for uniform data (like the null hypothesis).
-* A useful function to create character variables to designate categorical variables is `rep()`.  
-* A useful function to generate sequences of numbers with particular patterns (e.g. like Subject IDs, or Item IDs), is `seq()`
+-   Simulate data from other distributions: `rbinom()` for binomial data, `rpois()` for count data, and `runif()` for uniform data (like the null hypothesis).
+-   A useful function to create character variables to designate categorical variables is `rep()`.\
+-   A useful function to generate sequences of numbers with particular patterns (e.g. like Subject IDs, or Item IDs), is `seq()`
 
 #### `rep()`
 
@@ -235,8 +218,8 @@ Use `seq()` to create a vector of the numbers 0 to 100 by 10s.
 seq(0, 100, by = 10)
 ```
 
-
 Here is some code to simulate a tibble with 2 x 2 within subjects design. It assumes 20 subjects participating in all conditions. IV1 has two levels. IV2 has two levels.
+
 ```{r AOV-within}
 Subject_ID<-factor(rep(seq(1,20),each=4))  
 DV<-rnorm(80,c(100,200,300,400),sd=10)
@@ -245,17 +228,15 @@ IV2<-rep(c("level1","level2"),each=1,40)
 AllData<-dplyr::tibble(Subject_ID,DV,IV1,IV2)
 ```
 
-## Calculating power   
+## Calculating power
 
+Data simulation is useful for calculating power when planning a study. The logic of the approach is as follows:
 
-Data simulation is useful for calculating power when planning a study. The logic of the approach is as follows:  
-
-* generate a large number of datasets that randomly sample from population values that you determine,  
-* carry out your analysis on each dataset,   
-* determine what proportion of those analyses rejected the null hypothesis.  
+-   generate a large number of datasets that randomly sample from population values that you determine,\
+-   carry out your analysis on each dataset,\
+-   determine what proportion of those analyses rejected the null hypothesis.
 
 You can do this by putting the contents of your data simulation code within a function, that you then replicate many times. Put all your parameters as `arguments` to the function.
-
 
 #### Structuring a function
 
@@ -268,7 +249,8 @@ function_name <- function(my_args) {
 }
 ```
 
-### Create custom functions  
+### Create custom functions
+
 Here is a custom function for the independent samples t-test, that outputs selected values. It takes the arguments that we created earlier when simulating independent samples.
 
 ```{r ind-func}
@@ -292,6 +274,7 @@ ind_sim <- function(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd) {
   )
 }
 ```
+
 Now run your new function with the values you used above. Note that you can enter these directly into the functions arguments, but here they are coded outside the function so they can be referenced in a histogram.
 
 ```{r}
@@ -304,15 +287,17 @@ A_sd <- 2.5
 B_sd <- 2.5
 ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd)
 ```
+
 Now you can use this function to run many simulations. There are a lot of ways to do this. The pattern below uses the `map_df` function from the `purrr` package, and stores the results in a variable called 'simulation'. This runs 1000 simulations, which is fine for a demonstration, but you would be better with 100,000.
 
 ```{r}
 simulation <- purrr::map_df(1:1000, ~ind_sim(A_sub_n, B_sub_n, A_mean, B_mean, A_sd, B_sd))
 ```
 
+### Determine power
 
-### Determine power  
 You then calculate the proportion of tests that reject the null. The p-values from each run can also be represented in a histogram. What happens to p-values when there is no effect (e.g. you set A_mean equal to B_mean)?
+
 ```{r power-hist}
 ###### p-values < .05 ? ######
 sig.x1 = ifelse(simulation$p <= .05, 1, 0)
@@ -320,8 +305,6 @@ sig.x1 = ifelse(simulation$p <= .05, 1, 0)
 hist(simulation$p, 20, xaxp=c(0, 1, 20), col=2, main = paste('power:', mean(sig.x1 * 100), '% with', A_sub_n, 'subjects per group'))
 ```
 
-### Save your simulation  
-You can save your work as a new R script (ending in .R), or Rmarkdown file (ending in .Rmd). These can then be uploaded to supplement a preregistration. See example (here)[https://osf.io/kfxtp/].
+### Save your simulation
 
-
-
+You can save your work as a new R script (ending in .R), or Rmarkdown file (ending in .Rmd). These can then be uploaded to supplement a preregistration. See example (here)[<https://osf.io/kfxtp/>].

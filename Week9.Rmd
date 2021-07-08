@@ -17,3 +17,6 @@ Materials for Session 4 in Week 9: slides can be found [here](./04DigitalTools.p
 ◆	Print power estimate for different sample sizes. 
 
 FOLLOW-UP: Update preregistration document with new SESOI & power analysis
+
+![](./EROS_padded_logo.png){width="30%"} **For more info, contact: [cylcia.bolibaugh\@york.ac.uk](mailto:cylcia.bolibaugh@york.ac.uk){.email}**
+
